@@ -18,6 +18,7 @@
     <head>
         <?= $this->Html->charset() ?>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat'>
         <title>Gerenciador Vendas</title>
 
         <?= $this->Html->meta('icon') ?>
@@ -28,7 +29,7 @@
         <?= $this->Html->css('fontawesome.min.css') ?>
 
         <link rel='stylesheet/less' type='text/css' href='/less/mixin.less'>
-        <link rel='stylesheet/less' type='text/css' href='/less/default.less'>
+        <link rel='stylesheet/less' type='text/css' href='/less/styles.less'>
         
         <?= $this->Html->script('less.min.js') ?>
 
@@ -37,7 +38,7 @@
         <?= $this->fetch('script') ?>
     </head>
     <body>
-        <nav class='navbar navbar-default'>
+        <nav class='navbar navbar-default' id='main-menu'>
             <div class='container-fluid'>
                 <div class='navbar-header'>
                     <?php if ($this->template !== 'login'): ?>
@@ -55,7 +56,7 @@
                         <ul class='nav navbar-nav'>
                             <li>
                                 <a href='/sistema/home'>
-                                    <i class='fas fa-home'></i> Home
+                                    <i class='fas fa-home'></i> Início
                                 </a>
                             </li>
                             <li>
@@ -78,7 +79,7 @@
                             <li class='dropdown'>
                                 <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
                                     <i class='fas fa-user-circle fa-lg'></i>
-                                    <?= $usuario['login'] ?> 
+                                    <?= ucfirst($usuario['login']) ?> 
                                     <span class='caret'></span>
                                 </a>
                                 <ul class='dropdown-menu'>
@@ -87,7 +88,6 @@
                                             <i class='fas fa-key'></i> Alterar Senha
                                         </a>
                                     </li>
-                                    <li role='separator' class='divider'></li>
                                     <li>
                                         <a href='/Usuario/logout'>
                                             <i class='fas fa-sign-out-alt'></i> Sair
