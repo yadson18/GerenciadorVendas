@@ -18,7 +18,7 @@
     <head>
         <?= $this->Html->charset() ?>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Gerenciador Hinode</title>
+        <title>Gerenciador Vendas</title>
 
         <?= $this->Html->meta('icon') ?>
 
@@ -48,29 +48,51 @@
                             <span class='icon-bar'></span>
                         </button>
                     <?php endif ?>
-                    <a class='navbar-brand' href='#'>Hinode</a>
+                    <a class='navbar-brand' href='#'>GV</a>
                 </div>
                 <?php if ($this->template !== 'login'): ?>
                     <div class='collapse navbar-collapse' id='menu'>
                         <ul class='nav navbar-nav'>
-                            <li class='active'>
-                                <a href='#'>
-                                    Link <span class='sr-only'>(current)</span>
+                            <li>
+                                <a href='/sistema/home'>
+                                    <i class='fas fa-home'></i> Home
                                 </a>
                             </li>
                             <li>
-                                <a href='#'>Link</a>
+                                <a href='/cliente/index'>
+                                    <i class='fas fa-users'></i> Cliente
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/produto/index'>
+                                    <i class='fas fa-dolly-flatbed'></i> Produto
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/colaborador/index'>
+                                    <i class='fas fa-user-tie'></i> Colaborador
+                                </a>
                             </li>
                         </ul>
                         <ul class='nav navbar-nav navbar-right'>
                             <li class='dropdown'>
                                 <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
-                                    Dropdown <span class='caret'></span>
+                                    <i class='fas fa-user-circle fa-lg'></i>
+                                    <?= $usuario['login'] ?> 
+                                    <span class='caret'></span>
                                 </a>
                                 <ul class='dropdown-menu'>
-                                    <li><a href='#'>Action</a></li>
+                                    <li>
+                                        <a href='#'>
+                                            <i class='fas fa-key'></i> Alterar Senha
+                                        </a>
+                                    </li>
                                     <li role='separator' class='divider'></li>
-                                    <li><a href='/Usuario/logout'>Sair</a></li>
+                                    <li>
+                                        <a href='/Usuario/logout'>
+                                            <i class='fas fa-sign-out-alt'></i> Sair
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>

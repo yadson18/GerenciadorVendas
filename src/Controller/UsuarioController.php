@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-use Cake\ORM\TableRegistry;
 
 /**
  * Usuario Controller
@@ -124,14 +123,6 @@ class UsuarioController extends AppController
         }
         if ($this->request->is('POST')) {
             $usuario = $this->Auth->identify();
-
-            /*if (isset($usuario['id'])) {
-                $pessoa = TableRegistry::get('Pessoa')->get($usuario['id'], [
-                    'contain' => 'PessoaFisica'
-                ]);
-            }
-
-            debug($pessoa);*/
 
             if ($usuario) {
                 $this->Auth->setUser($usuario);

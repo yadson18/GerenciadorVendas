@@ -30,10 +30,9 @@
             </div>
             <div class='form-footer'>
                 <div class='form-group'>
-                    <?= $this->Form->button(__('Entrar'), [
-                            'class' => 'btn btn-success btn-block'
-                        ]) 
-                    ?>
+                    <button class='btn btn-success btn-block'>
+                        Entrar <i class='fas fa-sign-in-alt'></i>
+                    </button>
                 </div>
             </div>
         <?= $this->Form->end() ?>

@@ -21,27 +21,11 @@ class SistemaController extends AppController
      */
     public function home()
     {
-        $usuario = TableRegistry::get('Usuario');
+        $cliente = TableRegistry::get('Cliente')->find('estatisticaBasica')->first();
+        $produto = TableRegistry::get('Produto')->find('estatisticaBasica')->first();
+        $colaborador = TableRegistry::get('Colaborador')->find('estatisticaBasica')->first();
+        $pedido = TableRegistry::get('Pedido')->find('estatisticaBasica')->first();
 
-        /*$resultado = $usuario->get(1, [
-            'contain' => [
-                'Pessoa' => [
-                    'PessoaFisica',
-                    'Contato', 
-                    'Endereco' => [
-                        'Pais',
-                        'Estado',
-                        'Cidade'
-                    ]
-                ]
-            ]
-        ]);*/
-
-        /*$this->paginate = [
-            'contain' => ['Pessoa']
-        ];
-        $usuario = $this->paginate($this->Usuario);
-
-        $this->set(compact('usuario'));*/
+        $this->set(compact('cliente','produto','colaborador','pedido'));
     }
 }

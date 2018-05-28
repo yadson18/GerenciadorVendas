@@ -134,4 +134,17 @@ class ProdutoTable extends Table
 
         return $rules;
     }
+
+    public function findEstatisticaBasica()
+    {
+        $query = $this->find();
+        return $query->select([
+            'cadastradosTotal' => $query->func()->count('id'),
+            'cadastradosHoje' => $query->func()->count(
+                $query->newExpr()->addCase(
+                    $query->newExpr()->add(['date(data_criacao)' => date('Y-m-d')])
+                )
+            )
+        ]);
+    }
 }
