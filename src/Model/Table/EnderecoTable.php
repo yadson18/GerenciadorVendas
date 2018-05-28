@@ -42,7 +42,8 @@ class EnderecoTable extends Table
 
         $this->belongsTo('Pais', [
             'foreignKey' => 'pais_id',
-            'joinType' => 'INNER'
+            'joinType' => 'INNER',
+            'propertyName' => 'pais'
         ]);
         $this->belongsTo('Estado', [
             'foreignKey' => 'estado_id',

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Sistema Controller
@@ -20,6 +21,22 @@ class SistemaController extends AppController
      */
     public function home()
     {
+        $usuario = TableRegistry::get('Usuario');
+
+        /*$resultado = $usuario->get(1, [
+            'contain' => [
+                'Pessoa' => [
+                    'PessoaFisica',
+                    'Contato', 
+                    'Endereco' => [
+                        'Pais',
+                        'Estado',
+                        'Cidade'
+                    ]
+                ]
+            ]
+        ]);*/
+
         /*$this->paginate = [
             'contain' => ['Pessoa']
         ];

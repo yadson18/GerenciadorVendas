@@ -33,7 +33,7 @@ class Estado extends Entity
         'nome' => true,
         'cod_estado' => true,
         'pais_id' => true,
-        'pai' => true,
+        'pais' => true,
         'cidade' => true,
         'endereco' => true
     ];

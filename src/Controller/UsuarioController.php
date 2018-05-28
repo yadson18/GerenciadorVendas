@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Usuario Controller
@@ -122,19 +123,22 @@ class UsuarioController extends AppController
             return $this->redirect($this->Auth->redirectUrl());
         }
         if ($this->request->is('POST')) {
-            $user = $this->Auth->identify();
+            $usuario = $this->Auth->identify();
 
-            if ($user) {
-                $this->Auth->setUser($user);
+            /*if (isset($usuario['id'])) {
+                $pessoa = TableRegistry::get('Pessoa')->get($usuario['id'], [
+                    'contain' => 'PessoaFisica'
+                ]);
+            }
+
+            debug($pessoa);*/
+
+            if ($usuario) {
+                $this->Auth->setUser($usuario);
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Usuário inválido, tente novamente.'));
         }
-       /* debug(
-            $this->Usuario->find('all')->contain([
-                'Pessoa' => ['PessoaFisica', 'Contato', 'Endereco' => ['Pais']]
-            ])->toArray()
-        );*/
     }
 
     public function logout()

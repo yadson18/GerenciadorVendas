@@ -32,6 +32,7 @@ class PaisTable extends Table
         parent::initialize($config);
 
         $this->setTable('pais');
+        $this->entityClass('App\Model\Entity\Pais');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
     }

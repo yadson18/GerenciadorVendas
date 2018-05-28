@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Pais Entity
+ * Pai Entity
  *
  * @property int $id
  * @property string $nome

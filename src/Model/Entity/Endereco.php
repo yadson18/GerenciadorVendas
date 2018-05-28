@@ -42,7 +42,7 @@ class Endereco extends Entity
         'pais_id' => true,
         'estado_id' => true,
         'cidade_id' => true,
-        'pai' => true,
+        'pais' => true,
         'estado' => true,
         'cidade' => true,
         'pessoa' => true

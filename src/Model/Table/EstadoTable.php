@@ -40,7 +40,8 @@ class EstadoTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Pais', [
-            'foreignKey' => 'pais_id'
+            'foreignKey' => 'pais_id',
+            'propertyName' => 'pais'
         ]);
         $this->hasMany('Cidade', [
             'foreignKey' => 'estado_id'
