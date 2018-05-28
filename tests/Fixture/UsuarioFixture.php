@@ -27,8 +27,8 @@ class UsuarioFixture extends TestFixture
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'login' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'senha' => ['type' => 'string', 'length' => 64, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'data_criacao' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'data_alteracao' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'data_criacao' => ['type' => 'timestamp', 'length' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
+        'data_alteracao' => ['type' => 'timestamp', 'length' => null, 'null' => false, 'default' => 'CURRENT_TIMESTAMP', 'comment' => '', 'precision' => null],
         'pessoa_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'fk_usuario_pessoa1_idx' => ['type' => 'index', 'columns' => ['pessoa_id'], 'length' => []],
@@ -58,8 +58,8 @@ class UsuarioFixture extends TestFixture
                 'id' => 1,
                 'login' => 'Lorem ipsum dolor sit amet',
                 'senha' => 'Lorem ipsum dolor sit amet',
-                'data_criacao' => '2018-05-28',
-                'data_alteracao' => '2018-05-28',
+                'data_criacao' => 1527482347,
+                'data_alteracao' => 1527482347,
                 'pessoa_id' => 1
             ],
         ];

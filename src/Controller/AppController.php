@@ -57,8 +57,8 @@ class AppController extends Controller
                 ]
             ],
             'loginRedirect' => [
-                'controller' => 'usuario',
-                'action' => 'add'
+                'controller' => 'sistema',
+                'action' => 'home'
             ],
             'loginAction' => [
                 'controller' => 'usuario',
@@ -75,6 +75,11 @@ class AppController extends Controller
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
     }
+
+    /*public function beforeFilter(Event $event)
+    {
+        debug($this->Auth->user());
+    }*/
 
     public function isAuthorized($user) { 
         if ($user) {

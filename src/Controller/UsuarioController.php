@@ -118,6 +118,9 @@ class UsuarioController extends AppController
 
     public function login()
     {
+        if ($this->Auth->user()) {
+            return $this->redirect($this->Auth->redirectUrl());
+        }
         if ($this->request->is('POST')) {
             $user = $this->Auth->identify();
 
@@ -127,6 +130,11 @@ class UsuarioController extends AppController
             }
             $this->Flash->error(__('Usuário inválido, tente novamente.'));
         }
+       /* debug(
+            $this->Usuario->find('all')->contain([
+                'Pessoa' => ['PessoaFisica', 'Contato', 'Endereco' => ['Pais']]
+            ])->toArray()
+        );*/
     }
 
     public function logout()
@@ -140,6 +148,6 @@ class UsuarioController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['login', 'logout']);
+        $this->Auth->allow(['login']);
     }
 }

@@ -5,7 +5,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Usuario Model
@@ -70,12 +69,12 @@ class UsuarioTable extends Table
             ->notEmpty('senha');
 
         $validator
-            ->date('data_criacao')
+            ->dateTime('data_criacao')
             ->requirePresence('data_criacao', 'create')
             ->notEmpty('data_criacao');
 
         $validator
-            ->date('data_alteracao')
+            ->dateTime('data_alteracao')
             ->requirePresence('data_alteracao', 'create')
             ->notEmpty('data_alteracao');
 

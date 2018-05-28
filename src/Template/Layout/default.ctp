@@ -40,30 +40,42 @@
         <nav class='navbar navbar-default'>
             <div class='container-fluid'>
                 <div class='navbar-header'>
-                    <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#menu' aria-expanded='false'>
-                        <span class='sr-only'>Toggle navigation</span>
-                        <span class='icon-bar'></span>
-                        <span class='icon-bar'></span>
-                        <span class='icon-bar'></span>
-                    </button>
+                    <?php if ($this->template !== 'login'): ?>
+                        <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#menu' aria-expanded='false'>
+                            <span class='sr-only'>Toggle navigation</span>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                        </button>
+                    <?php endif ?>
                     <a class='navbar-brand' href='#'>Hinode</a>
                 </div>
-                <div class='collapse navbar-collapse' id='menu'>
-                    <ul class='nav navbar-nav'>
-                        <li class='active'><a href='#'>Link <span class='sr-only'>(current)</span></a></li>
-                        <li><a href='#'>Link</a></li>
-                    </ul>
-                    <ul class='nav navbar-nav navbar-right'>
-                        <li class='dropdown'>
-                            <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a>
-                            <ul class='dropdown-menu'>
-                                <li><a href='#'>Action</a></li>
-                                <li role='separator' class='divider'></li>
-                                <li><a href='/Usuario/logout'>Sair</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <?php if ($this->template !== 'login'): ?>
+                    <div class='collapse navbar-collapse' id='menu'>
+                        <ul class='nav navbar-nav'>
+                            <li class='active'>
+                                <a href='#'>
+                                    Link <span class='sr-only'>(current)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='#'>Link</a>
+                            </li>
+                        </ul>
+                        <ul class='nav navbar-nav navbar-right'>
+                            <li class='dropdown'>
+                                <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
+                                    Dropdown <span class='caret'></span>
+                                </a>
+                                <ul class='dropdown-menu'>
+                                    <li><a href='#'>Action</a></li>
+                                    <li role='separator' class='divider'></li>
+                                    <li><a href='/Usuario/logout'>Sair</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                <?php endif ?>
             </div>
         </nav>
         <div class='container'>

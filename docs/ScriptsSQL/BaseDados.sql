@@ -6048,8 +6048,8 @@ create table if not exists `hinode`.`usuario` (
   `id` int not null auto_increment,
   `login` varchar(30) not null,
   `senha` varchar(64) not null,
-  `data_criacao` date not null,
-  `data_alteracao` date not null,
+  `data_criacao` timestamp not null default current_timestamp,
+  `data_alteracao` timestamp not null default current_timestamp,
   `pessoa_id` int not null,
   primary key (`id`),
   index `fk_usuario_pessoa1_idx` (`pessoa_id` asc),
@@ -6069,9 +6069,9 @@ engine = innodb;
 create table if not exists `hinode`.`cliente` (
   `id` int not null auto_increment,
   `criado_por` int not null,
-  `data_criacao` date not null,
+  `data_criacao` timestamp not null default current_timestamp,
   `alterado_por` int not null,
-  `data_alteracao` date not null,
+  `data_alteracao` timestamp not null default current_timestamp,
   `pessoa_id` int not null,
   primary key (`id`),
   unique index `id_unique` (`id` asc),
@@ -6161,7 +6161,7 @@ engine = innodb;
 -- -----------------------------------------------------
 create table if not exists `hinode`.`pedido` (
   `id` int not null auto_increment,
-  `data_pedido` date not null,
+  `data_pedido` timestamp not null default current_timestamp,
   `valor_pedido` decimal(10,2) not null,
   `forma_pagamento_id` int not null,
   `encomendado_por` int not null,
@@ -6213,9 +6213,9 @@ create table if not exists `hinode`.`produto` (
   `valor_venda` decimal(10,2) not null,
   `caminho_imagem` varchar(200) null,
   `criado_por` int not null,
-  `data_criacao` date not null,
+  `data_criacao` timestamp not null default current_timestamp,
   `alterado_por` int not null,
-  `data_alteracao` date not null,
+  `data_alteracao` timestamp not null default current_timestamp,
   `categoria_id` int not null,
   primary key (`id`),
   unique index `id_unique` (`id` asc),
@@ -6290,9 +6290,9 @@ engine = innodb;
 create table if not exists `hinode`.`colaborador` (
   `id` int not null auto_increment,
   `criado_por` int not null,
-  `data_criacao` date not null,
+  `data_criacao` timestamp not null default current_timestamp,
   `alterado_por` int not null,
-  `data_alteracao` date not null,
+  `data_alteracao` timestamp not null default current_timestamp,
   `pessoa_id` int not null,
   primary key (`id`),
   unique index `id_unique` (`id` asc),
@@ -6337,5 +6337,5 @@ values (1, 1);
 insert into `pessoa_fisica` (`rg`, `cpf`, `nome`, `data_nascimento`, `pessoa_id`) 
 values ('000000000', '00000000000', 'Padrão', '1990-01-01', 1);
 
-insert into `usuario` (`login`, `senha`, `data_criacao`, `data_alteracao`, `pessoa_id`) 
-values ('admin', '$2y$10$HB6Jsb/SE9PP1lN7.TXkeuxgsZtR3lfOFgsqbtwtgMSQbivystJBG', '2018-01-01', '2018-01-01', 1);
+insert into `usuario` (`login`, `senha`, `pessoa_id`) 
+values ('admin', '$2y$10$HB6Jsb/SE9PP1lN7.TXkeuxgsZtR3lfOFgsqbtwtgMSQbivystJBG', 1);

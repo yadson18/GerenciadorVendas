@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $login
  * @property string $senha
- * @property \Cake\I18n\FrozenDate $data_criacao
- * @property \Cake\I18n\FrozenDate $data_alteracao
+ * @property \Cake\I18n\FrozenTime $data_criacao
+ * @property \Cake\I18n\FrozenTime $data_alteracao
  * @property int $pessoa_id
  *
  * @property \App\Model\Entity\Pessoa $pessoa
