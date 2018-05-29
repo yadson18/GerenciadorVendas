@@ -18,7 +18,7 @@
     <head>
         <?= $this->Html->charset() ?>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat'>
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat|Poppins'>
         <title>Gerenciador Vendas</title>
 
         <?= $this->Html->meta('icon') ?>

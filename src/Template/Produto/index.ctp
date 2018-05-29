@@ -1,71 +1,64 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Produto[]|\Cake\Collection\CollectionInterface $produto
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Categoria'), ['controller' => 'Categoria', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Categorium'), ['controller' => 'Categoria', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Pedido'), ['controller' => 'Pedido', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedido', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="produto index large-9 medium-8 columns content">
-    <h3><?= __('Produto') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('codigo_produto') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('quantidade_estoque') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('valor_compra') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('valor_venda') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('caminho_imagem') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('criado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('data_criacao') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('alterado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('data_alteracao') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('categoria_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($produto as $produto): ?>
-            <tr>
-                <td><?= $this->Number->format($produto->id) ?></td>
-                <td><?= h($produto->codigo_produto) ?></td>
-                <td><?= h($produto->nome) ?></td>
-                <td><?= $this->Number->format($produto->quantidade_estoque) ?></td>
-                <td><?= $this->Number->format($produto->valor_compra) ?></td>
-                <td><?= $this->Number->format($produto->valor_venda) ?></td>
-                <td><?= h($produto->caminho_imagem) ?></td>
-                <td><?= $this->Number->format($produto->criado_por) ?></td>
-                <td><?= h($produto->data_criacao) ?></td>
-                <td><?= $this->Number->format($produto->alterado_por) ?></td>
-                <td><?= h($produto->data_alteracao) ?></td>
-                <td><?= $produto->has('categorium') ? $this->Html->link($produto->categorium->id, ['controller' => 'Categoria', 'action' => 'view', $produto->categorium->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $produto->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $produto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<div id='produto-index'>
+    <div class="page-header">
+        <a href='/produto/add' class='btn btn-success btn-lg'>
+            Novo Produto <i class='fas fa-plus-circle'></i>
+        </a>
+    </div>
+    <div class='row'>
+        <?php foreach ($produto as $produto): ?>
+            <div class='col-md-3 col-sm-4'>
+                <div class='card-product'>
+                    <div class='product-image'> 
+                        <?php if (!empty($produto->caminho_imagem) &&
+                                file_exists(WWW_ROOT . $produto->caminho_imagem)
+                            ): 
+                        ?>
+                            <img src=<?= h($produto->caminho_imagem) ?> class='img-responsive'>
+                        <?php else: ?>
+                            <img src='/img/produtos/sem-imagem.gif' class='img-responsive'>
+                        <?php endif; ?>
+                    </div>
+                    <div class='product-content text-center'>
+                        <p class='product-name'>
+                            <?= h($produto->nome) ?>
+                        </p>
+                        <p class='product-description'>
+                            <?= h($produto->descricao) ?>
+                        </p>
+                        <p class='product-price'>
+                            <?= $this->Number->currency($produto->valor_venda) ?>
+                        </p>
+                        <p class='product-quantity'>
+                            Disponíveis: 
+                            <span class=<?= ($produto->quantidade_estoque < 4) ? 'low-quantity' : '' ?>>
+                                <?= $this->Number->format($produto->quantidade_estoque) ?>
+                            </span>
+                        </p>
+                    </div>
+                    <div>
+                        <a href=/produto/view/<?= $produto->id ?> class='btn btn-primary btn-block'>
+                            Detalhes <i class='fas fa-angle-double-right'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div class='col-md-12 col-sm-12 col-xs-12'>
+        <div class='paginator'>
+            <ul class='pagination'>
+                <?= $this->Paginator->first('<< ' . __('Início')) ?>
+                <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next(__('Próximo') . ' >') ?>
+                <?= $this->Paginator->last(__('Fim') . ' >>') ?>
+            </ul>
+            <p>
+                <?= $this->Paginator->counter([
+                    'format' => __('Página {{page}} de {{pages}}, exibindo {{current}} registro(s) de um total de {{count}}')
+                    ]) 
+                ?>
+            </p>
+        </div>
     </div>
 </div>
