@@ -25,6 +25,9 @@
 
         <?= $this->Html->script('jquery.min.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
+        <?= $this->Html->script('mask-money.min.js') ?>
+        <?= $this->Html->script('mask.min.js') ?>
+        <?= $this->Html->script('scripts.js') ?>
         <?= $this->Html->css('bootstrap.min.css') ?>
         <?= $this->Html->css('fontawesome.min.css') ?>
 

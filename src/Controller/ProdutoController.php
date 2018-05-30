@@ -52,18 +52,47 @@ class ProdutoController extends AppController
     public function add()
     {
         $produto = $this->Produto->newEntity();
-        if ($this->request->is('post')) {
-            $produto = $this->Produto->patchEntity($produto, $this->request->getData());
-            if ($this->Produto->save($produto)) {
-                $this->Flash->success(__('The produto has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('post')) {
+            $imagem = $this->request->getData('imagem');
+            unset($this->request->data['imagem']);
+            $produto = $this->Produto->patchEntity($produto, $this->request->getData());
+            $usuario_id = $this->Auth->user('id');
+            $produto->criado_por = $usuario_id;
+            $produto->alterado_por = $usuario_id;
+            $produto->caminho_imagem = $this->Produto->getCaminhoImagem($produto->codigo_produto, $imagem);
+
+            if ($produto->caminho_imagem === 'erro_arquivo') {
+                $this->Flash->error(__('Por favor, selecione uma imagem válida.'));
             }
-            $this->Flash->error(__('The produto could not be saved. Please, try again.'));
+            else if ($produto->caminho_imagem === 'erro_diretorio') {
+                $this->Flash->error(__('Erro de diretório, não foi possível salvar o produto, por favor, contacte o administrador do sistema.'));
+            }
+            else {
+                if ($this->Produto->save($produto)) {
+                    if ($produto->caminho_imagem) {
+                        if ($this->Produto->uploadImagem($imagem, $produto->caminho_imagem)) {
+                            $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
+                        }
+                        else {
+                            $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso, porém não foi possível salvar a imagem.'));
+                        }
+                    }
+                    else {
+                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
+                    }
+                }
+                else {
+                    $this->Flash->success(__('Não foi possível salvar o produto, ferifique se todos os dados estão corretos.'));
+                }
+            }
         }
-        $categoria = $this->Produto->Categoria->find('list', ['limit' => 200]);
-        $pedido = $this->Produto->Pedido->find('list', ['limit' => 200]);
-        $this->set(compact('produto', 'categoria', 'pedido'));
+        $categoria = $this->Produto->Categoria->find('list', [
+            'keyField' => 'id',
+            'valueField' => 'descricao',
+            'limit' => 200
+        ]);
+        $this->set(compact('produto', 'categoria'));
     }
 
     /**

@@ -1,22 +1,29 @@
 <div id='produto-index'>
-    <div class="page-header">
+    <div class='page-header'>
         <a href='/produto/add' class='btn btn-success btn-lg'>
             Novo Produto <i class='fas fa-plus-circle'></i>
         </a>
     </div>
     <div class='row'>
+        <div class='message-box col-sm-12'>
+            <?= $this->Flash->render() ?>  
+        </div>
         <?php foreach ($produto as $produto): ?>
             <div class='col-md-3 col-sm-4'>
                 <div class='card-product'>
                     <div class='product-image'> 
-                        <?php if (!empty($produto->caminho_imagem) &&
-                                file_exists(WWW_ROOT . $produto->caminho_imagem)
-                            ): 
+                        <?php 
+                            if (is_file(WWW_ROOT . 'img' . DS . $produto->caminho_imagem)) {
+                                echo $this->Html->image($produto->caminho_imagem, [
+                                    'class' => 'img-responsive'
+                                ]);
+                            }
+                            else {
+                                echo $this->Html->image('produtos/sem-imagem.gif', [
+                                    'class' => 'img-responsive'
+                                ]);
+                            }
                         ?>
-                            <img src=<?= h($produto->caminho_imagem) ?> class='img-responsive'>
-                        <?php else: ?>
-                            <img src='/img/produtos/sem-imagem.gif' class='img-responsive'>
-                        <?php endif; ?>
                     </div>
                     <div class='product-content text-center'>
                         <p class='product-name'>
@@ -29,7 +36,7 @@
                             <?= $this->Number->currency($produto->valor_venda) ?>
                         </p>
                         <p class='product-quantity'>
-                            Disponíveis: 
+                            <?= __('Disponíveis:') ?> 
                             <span class=<?= ($produto->quantidade_estoque < 4) ? 'low-quantity' : '' ?>>
                                 <?= $this->Number->format($produto->quantidade_estoque) ?>
                             </span>
@@ -37,7 +44,7 @@
                     </div>
                     <div>
                         <a href=/produto/view/<?= $produto->id ?> class='btn btn-primary btn-block'>
-                            Detalhes <i class='fas fa-angle-double-right'></i>
+                            <?= __('Detalhes') ?> <i class='fas fa-angle-double-right'></i>
                         </a>
                     </div>
                 </div>

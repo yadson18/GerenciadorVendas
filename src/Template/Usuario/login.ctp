@@ -2,10 +2,13 @@
     <div class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3'>
         <?= $this->Form->create() ?>
             <div class='form-header'>
-                <?= $this->Flash->render() ?>   
-                <?= $this->Flash->render('auth') ?>
+                <h3 class='text-center'>Login</h3>
             </div>
             <div class='form-body'>
+                <div class='message-box'>
+                    <?= $this->Flash->render() ?>   
+                    <?= $this->Flash->render('auth') ?>
+                </div>
                 <div class='form-group icon-right'>
                     <?= $this->Form->control('login', [
                             'class' => 'form-control',

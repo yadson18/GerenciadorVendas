@@ -104,8 +104,7 @@ class ProdutoTable extends Table
 
         $validator
             ->dateTime('data_criacao')
-            ->requirePresence('data_criacao', 'create')
-            ->notEmpty('data_criacao');
+            ->allowEmpty('data_criacao');
 
         $validator
             ->integer('alterado_por')
@@ -114,8 +113,7 @@ class ProdutoTable extends Table
 
         $validator
             ->dateTime('data_alteracao')
-            ->requirePresence('data_alteracao', 'create')
-            ->notEmpty('data_alteracao');
+            ->allowEmpty('data_alteracao');
 
         return $validator;
     }
@@ -146,5 +144,32 @@ class ProdutoTable extends Table
                 )
             )
         ]);
+    }
+
+    public function getCaminhoImagem(string $codigo_produto, array $imagem = null)
+    {
+        if (isset($imagem['tmp_name']) && !empty($imagem['tmp_name'])) {
+            $tipo_arquivo = explode('/', $imagem['type']);
+
+            if (array_shift($tipo_arquivo) === 'image') {
+                $caminho_upload = 'produtos' . DS;
+                $nome_imagem = $codigo_produto . '-' . date('dmY-His');
+                $extensao = '.' . array_shift($tipo_arquivo);
+
+                if (is_dir(WWW_ROOT . 'img' . DS . $caminho_upload)) {
+                    return $caminho_upload . $nome_imagem . $extensao;
+                }
+                return 'erro_diretorio';
+            }
+            return 'erro_arquivo';
+        }
+    }
+
+    public function uploadImagem(array $imagem, string $destino)
+    {
+        if (move_uploaded_file($imagem['tmp_name'], WWW_ROOT . 'img' . DS . $destino)) {
+            return true;
+        }
+        return false;
     }
 }
