@@ -1,18 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins');
 @import 'default.less';
 
 #main-menu {
     .box-shadow(1px 2px 5px #777);
-    .font-size(1.09em);
     .background-color(#444);
+    .font-size(1.09em);
     .border-radius(0);
     .border(hidden);
 
     button.navbar-toggle {
         .border-color(white);
-
-        .icon-bar {
-			.background-color(white);
-        }
 
         &:hover, &:focus {
             .background-color(white);
@@ -21,6 +18,9 @@
             .icon-bar {
                 .background-color(#444);
             }
+        }
+        .icon-bar {
+			.background-color(white);
         }
     }
     .navbar-header, ul.navbar-nav > li{
@@ -49,14 +49,14 @@
         .background-color(#444);
 
         li a {
-            .font-family(Montserrat, sans-serif;);
+        	.font-family(Montserrat, sans-serif, Helvetica, Arial;) !important;
             .font-weight(bold);
             .color(white);
         }
     }        
 }
 #sistema-home {
-	.font-family(Poppins, sans-serif;) !important;
+	.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
 	.margin-top(2em);
 
 	.card-statistic {
@@ -151,8 +151,8 @@
 			.margin-bottom(15px);
 
 			img {
-				.height(180px);
-				.width(180px);
+				.height(160px);
+				.width(160px);
 				.margin(auto);
 			}
 		}
@@ -167,7 +167,7 @@
 				.color(#444);
 			}
 			.product-name {
-				.font-family(Poppins, sans-serif;) !important;
+				.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
 				.font-size(1.2em);
 				.height(23px);
 			}
@@ -193,6 +193,11 @@
 					.color(#c00);
 				}
 			}
+		}
+	}
+	.filter {
+		.filter-body {
+			.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
 		}
 	}
 }

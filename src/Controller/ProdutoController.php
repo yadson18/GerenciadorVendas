@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class ProdutoController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Conversor');
+    }
 
     /**
      * Index method
@@ -20,12 +25,22 @@ class ProdutoController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Categoria']
-        ];
-        $produto = $this->paginate($this->Produto);
+        $filtro = [];
+        $this->paginate = ['contain' => ['Categoria']];
 
-        $this->set(compact('produto'));
+        if ($this->request->getParam('?')) {
+            $filtro = $this->request->getParam('?');
+            
+            if (isset($filtro['categoria'])) {
+                $categorias = array_map('intval', array_values($filtro['categoria']));
+
+                $this->paginate['conditions'] = ['Produto.categoria_id IN' => $categorias];
+            }
+        }
+        $produto = $this->paginate($this->Produto);
+        $categoria = $this->Produto->Categoria->find('all')->toArray();
+
+        $this->set(compact('produto', 'categoria', 'filtro'));
     }
 
     /**
@@ -57,10 +72,12 @@ class ProdutoController extends AppController
             $imagem = $this->request->getData('imagem');
             unset($this->request->data['imagem']);
             $produto = $this->Produto->patchEntity($produto, $this->request->getData());
+            $produto->valor_compra = $this->Conversor->moneyToFloat($produto->valor_compra);
+            $produto->valor_venda = $this->Conversor->moneyToFloat($produto->valor_venda);
+            $produto->caminho_imagem = $this->Produto->getCaminhoImagem($produto->codigo_produto, $imagem);
             $usuario_id = $this->Auth->user('id');
             $produto->criado_por = $usuario_id;
             $produto->alterado_por = $usuario_id;
-            $produto->caminho_imagem = $this->Produto->getCaminhoImagem($produto->codigo_produto, $imagem);
 
             if ($produto->caminho_imagem === 'erro_arquivo') {
                 $this->Flash->error(__('Por favor, selecione uma imagem válida.'));

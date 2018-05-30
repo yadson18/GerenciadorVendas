@@ -1,4 +1,4 @@
-<div id='sistema-home'>
+<div id='sistema-home' class='container'>
 	<div class='col-md-3 col-sm-6'>
 		<div class='card-statistic'>
 			<a href='/cliente/index' class='cliente'>

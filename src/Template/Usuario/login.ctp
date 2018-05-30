@@ -1,4 +1,4 @@
-<div id='usuario-login' class='container-fluid'>
+<div id='usuario-login' class='container'>
     <div class='col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3'>
         <?= $this->Form->create() ?>
             <div class='form-header'>

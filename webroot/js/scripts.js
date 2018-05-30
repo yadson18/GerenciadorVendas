@@ -43,4 +43,17 @@ $(document).ready(function() {
 	$('.file').on('change', function(){
 		$('.file-name').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 	});
+
+	$('.filter input[type=checkbox]').on('change', function() {
+        var $location = $(location);
+        var url = $location.attr('href').split('?').shift();
+        var filtro = $('.filter input:checked').serialize();
+
+        if (filtro) {
+            $(location).attr('href', url + '?' + filtro);
+        }
+        else {
+            $(location).attr('href', url);
+        }
+    });
 });

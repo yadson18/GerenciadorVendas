@@ -18,22 +18,22 @@
     <head>
         <?= $this->Html->charset() ?>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat|Poppins'>
         <title>Gerenciador Vendas</title>
 
         <?= $this->Html->meta('icon') ?>
-
-        <?= $this->Html->script('jquery.min.js') ?>
-        <?= $this->Html->script('bootstrap.min.js') ?>
-        <?= $this->Html->script('mask-money.min.js') ?>
-        <?= $this->Html->script('mask.min.js') ?>
-        <?= $this->Html->script('scripts.js') ?>
-        <?= $this->Html->css('bootstrap.min.css') ?>
-        <?= $this->Html->css('fontawesome.min.css') ?>
-
-        <link rel='stylesheet/less' type='text/css' href='/less/mixin.less'>
-        <link rel='stylesheet/less' type='text/css' href='/less/styles.less'>
-        
+        <?= $this->Html->css(['bootstrap.min','fontawesome.min']) ?>
+        <?= $this->Html->script([
+            'jquery.min',
+            'bootstrap.min',
+            'mask-money.min',
+            'mask.min',
+            'scripts'
+        ]) ?>
+        <?= $this->Html->meta([
+            'link' => '/less/styles.less',
+            'rel' => 'stylesheet/less',
+            'type' => 'text/css'
+        ]); ?>
         <?= $this->Html->script('less.min.js') ?>
 
         <?= $this->fetch('meta') ?>
@@ -59,22 +59,22 @@
                         <ul class='nav navbar-nav'>
                             <li>
                                 <a href='/sistema/home'>
-                                    <i class='fas fa-home'></i> Início
+                                    <i class='fas fa-home'></i> <?= __('Início') ?>
                                 </a>
                             </li>
                             <li>
                                 <a href='/cliente/index'>
-                                    <i class='fas fa-users'></i> Cliente
+                                    <i class='fas fa-users'></i> <?= __('Cliente') ?>
                                 </a>
                             </li>
                             <li>
                                 <a href='/produto/index'>
-                                    <i class='fas fa-dolly-flatbed'></i> Produto
+                                    <i class='fas fa-dolly-flatbed'></i> <?= __('Produto') ?>
                                 </a>
                             </li>
                             <li>
                                 <a href='/colaborador/index'>
-                                    <i class='fas fa-user-tie'></i> Colaborador
+                                    <i class='fas fa-user-tie'></i> <?= __('Colaborador') ?>
                                 </a>
                             </li>
                         </ul>
@@ -88,12 +88,12 @@
                                 <ul class='dropdown-menu'>
                                     <li>
                                         <a href='#'>
-                                            <i class='fas fa-key'></i> Alterar Senha
+                                            <i class='fas fa-key'></i> <?= __('Alterar Senha') ?>
                                         </a>
                                     </li>
                                     <li>
                                         <a href='/Usuario/logout'>
-                                            <i class='fas fa-sign-out-alt'></i> Sair
+                                            <i class='fas fa-sign-out-alt'></i> <?= __('Sair') ?>
                                         </a>
                                     </li>
                                 </ul>
@@ -103,7 +103,7 @@
                 <?php endif ?>
             </div>
         </nav>
-        <div class='container'>
+        <div class='container-fluid'>
             <?= $this->fetch('content') ?>
         </div>
     </body>

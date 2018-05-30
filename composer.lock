@@ -750,16 +750,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.0.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8"
+                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/4e7c98de67cc4171d4c986554e09a511da40f3d8",
-                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/449f8b00b28ab6e6912c3e6b920406143b27193b",
+                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b",
                 "shasum": ""
             },
             "require": {
@@ -775,7 +775,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -802,20 +802,20 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T09:05:32+00:00"
+            "time": "2018-05-16T14:33:22+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04"
+                "reference": "562bf7005b55fd80d26b582d28e3e10f2dd5ae9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04",
-                "reference": "7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/562bf7005b55fd80d26b582d28e3e10f2dd5ae9c",
+                "reference": "562bf7005b55fd80d26b582d28e3e10f2dd5ae9c",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +825,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -852,7 +852,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T09:05:32+00:00"
+            "time": "2018-05-30T07:26:09+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1029,16 +1029,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "bf26aff803a11c5cc8eb7c4878a702c403ec67f1"
+                "reference": "741e7a571836f038de731105f4742ca8a164e43a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/bf26aff803a11c5cc8eb7c4878a702c403ec67f1",
-                "reference": "bf26aff803a11c5cc8eb7c4878a702c403ec67f1",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/741e7a571836f038de731105f4742ca8a164e43a",
+                "reference": "741e7a571836f038de731105f4742ca8a164e43a",
                 "shasum": ""
             },
             "require": {
@@ -1058,7 +1058,8 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.7.x-dev",
-                    "dev-develop": "1.8.x-dev"
+                    "dev-develop": "1.8.x-dev",
+                    "dev-release-2.0": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -1077,7 +1078,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2018-02-26T15:44:50+00:00"
+            "time": "2018-05-29T16:53:08+00:00"
         }
     ],
     "packages-dev": [
@@ -2277,16 +2278,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.0.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "8c633f5a815903a1fe6e3fc135f207267a8a79af"
+                "reference": "087e2ee0d74464a4c6baac4e90417db7477dc238"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/8c633f5a815903a1fe6e3fc135f207267a8a79af",
-                "reference": "8c633f5a815903a1fe6e3fc135f207267a8a79af",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/087e2ee0d74464a4c6baac4e90417db7477dc238",
+                "reference": "087e2ee0d74464a4c6baac4e90417db7477dc238",
                 "shasum": ""
             },
             "require": {
@@ -2295,7 +2296,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -2322,7 +2323,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T09:05:32+00:00"
+            "time": "2018-05-16T14:33:22+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -2381,16 +2382,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.0.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "3621fa74d0576a6f89d63bc44fabd376711bd0b0"
+                "reference": "73445bd33b0d337c060eef9652b94df72b6b3434"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/3621fa74d0576a6f89d63bc44fabd376711bd0b0",
-                "reference": "3621fa74d0576a6f89d63bc44fabd376711bd0b0",
+                "url": "https://api.github.com/repos/symfony/process/zipball/73445bd33b0d337c060eef9652b94df72b6b3434",
+                "reference": "73445bd33b0d337c060eef9652b94df72b6b3434",
                 "shasum": ""
             },
             "require": {
@@ -2399,7 +2400,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -2426,20 +2427,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T09:05:32+00:00"
+            "time": "2018-05-30T07:26:09+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.0.11",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "3c34cf3f4bbac9e003d9325225e9ef1a49180a18"
+                "reference": "bc88ad53e825ebacc7b190bbd360781fce381c64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/3c34cf3f4bbac9e003d9325225e9ef1a49180a18",
-                "reference": "3c34cf3f4bbac9e003d9325225e9ef1a49180a18",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/bc88ad53e825ebacc7b190bbd360781fce381c64",
+                "reference": "bc88ad53e825ebacc7b190bbd360781fce381c64",
                 "shasum": ""
             },
             "require": {
@@ -2448,20 +2449,26 @@
                 "symfony/polyfill-php72": "~1.5"
             },
             "conflict": {
-                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
+                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0",
+                "symfony/console": "<3.4"
             },
             "require-dev": {
                 "ext-iconv": "*",
+                "symfony/process": "~3.4|~4.0",
                 "twig/twig": "~1.34|~2.4"
             },
             "suggest": {
                 "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
-                "ext-intl": "To show region name in time zone dump"
+                "ext-intl": "To show region name in time zone dump",
+                "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
             },
+            "bin": [
+                "Resources/bin/var-dump-server"
+            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -2495,7 +2502,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2018-04-26T16:12:06+00:00"
+            "time": "2018-04-29T07:56:09+00:00"
         },
         {
             "name": "twig/twig",
