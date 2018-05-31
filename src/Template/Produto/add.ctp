@@ -13,8 +13,8 @@
                         <?= __('Código de barras') ?><span class='required'> *</span>
                     </label> 
                     <?= $this->Form->control('codigo_produto', [
-                            'class' => 'form-control',
                             'placeholder' => 'Ex: 0171825',
+                            'class' => 'form-control',
                             'required' => true,
                             'label' => false
                         ]) 

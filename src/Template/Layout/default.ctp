@@ -77,6 +77,11 @@
                                     <i class='fas fa-user-tie'></i> <?= __('Colaborador') ?>
                                 </a>
                             </li>
+                            <li>
+                                <a href='/pedido/index'>
+                                    <i class='fas fa-shopping-cart'></i> <?= __('Pedido') ?>
+                                </a>
+                            </li>
                         </ul>
                         <ul class='nav navbar-nav navbar-right'>
                             <li class='dropdown'>

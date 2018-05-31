@@ -26,7 +26,7 @@ class ProdutoController extends AppController
     public function index()
     {
         $filtro = [];
-        $this->paginate = ['contain' => ['Categoria']];
+        $this->paginate = ['contain' => ['Categoria'], 'limit' => 24];
 
         if ($this->request->getParam('?')) {
             $filtro = $this->request->getParam('?');
