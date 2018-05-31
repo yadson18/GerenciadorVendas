@@ -1,5 +1,9 @@
 $(document).ready(function() {
-	function moneyToFloat(money) {
+	function urlAtual() {
+		return $(location).attr('href').split('?').shift();
+	}
+	
+	function dinheiroParaFloat(money) {
 		return parseFloat(money.replace('.', '').replace(',', '.'));
 	}
 
@@ -7,6 +11,17 @@ $(document).ready(function() {
 		var precoFinal = precoCompra + (precoCompra * (lucro / 100));
 
 		return precoFinal.toFixed(2).replace(/[.]/g, ',');
+	}
+
+	function buscaProduto(evento) {
+		var url = urlAtual();
+    	var busca = $('.search input[name=busca]').serialize();
+
+    	if (evento.type === 'click' ||
+    		evento.type === 'keypress' && evento.charCode === 13
+    	) {
+    		$(location).attr('href', url + '?' + busca);    
+    	}
 	}
 
 	$('.thousands').mask('0.000.000.000.00', { reverse: true });
@@ -24,7 +39,7 @@ $(document).ready(function() {
 	});
 
 	$('#lucro, #preco-compra').on('keyup', function() {
-        var precoCompra = moneyToFloat($('#preco-compra').val());
+        var precoCompra = dinheiroParaFloat($('#preco-compra').val());
         var lucro = parseFloat($('#lucro').val());
 		var $precoSugerido = $('#preco-sugerido');
 
@@ -45,8 +60,7 @@ $(document).ready(function() {
 	});
 
 	$('.filter input[type=checkbox]').on('change', function() {
-        var $location = $(location);
-        var url = $location.attr('href').split('?').shift();
+        var url = urlAtual();
         var filtro = $('.filter input:checked').serialize();
 
         if (filtro) {
@@ -56,4 +70,8 @@ $(document).ready(function() {
             $(location).attr('href', url);
         }
     });
+
+    $('.search button').on('click', buscaProduto);
+
+    $('.search input[name=busca]').on('keypress', buscaProduto);
 });

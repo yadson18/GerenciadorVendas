@@ -1,8 +1,27 @@
 <div id='produto-index' class='container-fluid'>
     <div class='page-header'>
-        <a href='/produto/add' class='btn btn-success'>
-             Novo Produto <i class='fas fa-plus-circle'></i>
-        </a>
+        <div class='row'>
+            <div class='col-sm-3 form-group'>
+                <a href='/produto/add' class='btn btn-success'>
+                     Novo Produto <i class='fas fa-plus-circle'></i>
+                </a>
+            </div>
+            <div class='col-md-5 col-sm-9 col-xs-9'>
+                <div class='search input-group'>
+                    <?= $this->Form->control('busca', [
+                        'placeholder' => 'Digite sua busca aqui...',
+                        'class' => 'form-control',
+                        'type' => 'search',
+                        'label' => false
+                    ]) ?>
+                    <span class='input-group-btn'>
+                        <button class='btn btn-primary' type='button'>
+                            Buscar <i class='fas fa-search'></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class='row'>
         <div class='filter col-sm-3 hidden-xs'>

@@ -36,6 +36,15 @@ class ProdutoController extends AppController
 
                 $this->paginate['conditions'] = ['Produto.categoria_id IN' => $categorias];
             }
+            else if (isset($filtro['busca'])) {
+                $this->paginate['conditions'] = [
+                    'OR' => [
+                        'Produto.codigo_produto LIKE' => '%' . $filtro['busca'] . '%',
+                        'Produto.nome LIKE' => '%' . $filtro['busca'] . '%',
+                        'Produto.descricao LIKE' => '%' . $filtro['busca'] . '%'
+                    ]
+                ];
+            }
         }
         $produto = $this->paginate($this->Produto);
         $categoria = $this->Produto->Categoria->find('all')->toArray();
