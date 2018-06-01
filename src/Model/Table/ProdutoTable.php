@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Filesystem\File;
 
 /**
  * Produto Model
@@ -145,29 +146,58 @@ class ProdutoTable extends Table
         ]);
     }
 
-    public function getCaminhoImagem(string $codigo_produto, array $imagem = null)
+    public function validarImagem(array $imagem)
     {
-        if (isset($imagem['tmp_name']) && !empty($imagem['tmp_name'])) {
-            $tipo_arquivo = explode('/', $imagem['type']);
+        if (isset($imagem['error']) && $imagem['error'] === 0) {
+            $imagem = new File($imagem['tmp_name']);
 
-            if (array_shift($tipo_arquivo) === 'image') {
-                $caminho_upload = 'produtos' . DS;
-                $nome_imagem = $codigo_produto . '-' . date('dmY-His');
-                $extensao = '.' . array_shift($tipo_arquivo);
+            if ($imagem->exists()) {
+                if ($imagem->size() <= 300000) {  
+                    $mime = explode('/', $imagem->mime());
 
-                if (is_dir(WWW_ROOT . 'img' . DS . $caminho_upload)) {
-                    return $caminho_upload . $nome_imagem . $extensao;
+                    if (array_shift($mime) === 'image') {
+                        $ext = array_shift($mime);
+                        
+                        return [
+                            'erro' => false,
+                            'nome' => rand() . '-' . date('dmY-His') . '.' . $ext,
+                            'destino' =>  'produtos' . DS,
+                            'imagem_tmp' => $imagem
+                        ];
+                    }
+                    return [
+                        'erro' => true,
+                        'mensagem' => 'Por favor, selecione uma imagem válida.'
+                    ];
                 }
-                return 'erro_diretorio';
+                return [
+                    'erro' => true,
+                    'mensagem' => 'O tamanho da imagem, não pode ser superior a (3Mb).'
+                ];
             }
-            return 'erro_arquivo';
+            return [
+                'erro' => false,
+                'nome_imagem' => 'sem-imagem',
+                'destino' =>  'produtos' . DS . '.gif'
+            ];
         }
+        return [
+            'erro' => true,
+            'mensagem' => 'O tipo do arquivo é inválido ou o tamanho do arquivo é superior a (3Mb).'
+        ];
     }
 
-    public function uploadImagem(array $imagem, string $destino)
+    public function uploadImagem(array $imagem)
     {
-        if (move_uploaded_file($imagem['tmp_name'], WWW_ROOT . 'img' . DS . $destino)) {
-            return true;
+        $destino = WWW_ROOT . 'img' . DS . $imagem['destino'];
+
+        if (is_dir($destino)) {
+            $imagem_tmp = $imagem['imagem_tmp']->path;
+            $destino .= $imagem['nome'];
+
+            if (move_uploaded_file($imagem_tmp,  $destino)) {
+                return true;
+            }
         }
         return false;
     }

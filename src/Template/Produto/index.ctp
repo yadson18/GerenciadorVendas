@@ -14,6 +14,7 @@
             <div class='col-md-5 col-sm-9'>
                 <div class='search input-group'>
                     <?= $this->Form->control('busca', [
+                        'value' => (isset($filtro['busca'])) ? $filtro['busca'] : '', 
                         'placeholder' => 'Digite sua busca aqui...',
                         'class' => 'form-control',
                         'type' => 'search',

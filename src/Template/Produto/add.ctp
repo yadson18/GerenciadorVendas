@@ -12,7 +12,7 @@
                     <label>
                         <?= __('Código referência') ?><span class='required'> *</span>
                     </label> 
-                    <?= $this->Form->control('codigo_produto', [
+                    <?= $this->Form->control('produto[codigo_produto]', [
                             'placeholder' => 'Ex: 0171825',
                             'class' => 'form-control',
                             'required' => true,
@@ -24,7 +24,7 @@
                     <label>
                         <?= __('Nome') ?><span class='required'> *</span>
                     </label>
-                    <?= $this->Form->control('nome', [
+                    <?= $this->Form->control('produto[nome]', [
                             'placeholder' => 'Ex: Empire Intense (100ml)',
                             'class' => 'form-control',
                             'label' => false
@@ -35,7 +35,7 @@
                     <label>
                         <?= __('Preço compra (R$)') ?><span class='required'> *</span>
                     </label> 
-                    <?= $this->Form->control('valor_compra', [
+                    <?= $this->Form->control('produto[valor_compra]', [
                             'class' => 'form-control money',
                             'placeholder' => 'Ex: 40,00',
                             'id' => 'preco-compra',
@@ -71,7 +71,7 @@
                     <label>
                         <?= __('Preço venda (R$)') ?><span class='required'> *</span>
                     </label>
-                    <?= $this->Form->control('valor_venda', [
+                    <?= $this->Form->control('produto[valor_venda]', [
                             'class' => 'form-control money',
                             'placeholder' => 'Ex: 60,00',
                             'label' => false,
@@ -83,7 +83,7 @@
                     <label>
                         <?= __('Estoque') ?><span class='required'> *</span>
                     </label>
-                    <?= $this->Form->control('quantidade_estoque', [
+                    <?= $this->Form->control('produto[quantidade_estoque]', [
                             'class' => 'form-control',
                             'placeholder' => 'Ex: 15',
                             'label' => false
@@ -93,7 +93,7 @@
                 <div class='form-group col-sm-4'>
                     <label>Categoria</label>
                     <div class='input-group'>
-                        <?= $this->Form->control('categoria_id', [
+                        <?= $this->Form->control('produto[categoria_id]', [
                                 'class' => 'form-control',
                                 'options' => $categoria,
                                 'label' => false
@@ -127,7 +127,7 @@
                 </div>
                 <div class='form-group col-sm-12'>
                     <label>Descrição do produto</label>
-                    <?= $this->Form->textArea('descricao', [
+                    <?= $this->Form->textArea('produto[descricao]', [
                             'placeholder' => 'Digite uma descrição...',
                             'class' => 'form-control',
                             'label' => false

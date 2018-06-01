@@ -77,41 +77,32 @@ class ProdutoController extends AppController
     public function add()
     {
         $produto = $this->Produto->newEntity();
-
+        
         if ($this->request->is('post')) {
-            $imagem = $this->request->getData('imagem');
-            unset($this->request->data['imagem']);
-            $produto = $this->Produto->patchEntity($produto, $this->request->getData());
-            $produto->valor_compra = $this->Conversor->moneyToFloat($produto->valor_compra);
-            $produto->valor_venda = $this->Conversor->moneyToFloat($produto->valor_venda);
-            $produto->caminho_imagem = $this->Produto->getCaminhoImagem($produto->codigo_produto, $imagem);
-            $usuario_id = $this->Auth->user('id');
-            $produto->criado_por = $usuario_id;
-            $produto->alterado_por = $usuario_id;
+            $imagem = $this->Produto->validarImagem($this->request->getData('imagem'));
 
-            if ($produto->caminho_imagem === 'erro_arquivo') {
-                $this->Flash->error(__('Por favor, selecione uma imagem válida.'));
-            }
-            else if ($produto->caminho_imagem === 'erro_diretorio') {
-                $this->Flash->error(__('Erro de diretório, não foi possível salvar o produto, por favor, contacte o administrador do sistema.'));
-            }
-            else {
+            if (!$imagem['erro']) {
+                $produto = $this->Produto->patchEntity($produto, $this->request->getData('produto'));
+                $produto->valor_compra = $this->Conversor->moneyToFloat($produto->valor_compra);
+                $produto->valor_venda = $this->Conversor->moneyToFloat($produto->valor_venda);
+                $produto->criado_por = $this->Auth->user('id');
+                $produto->alterado_por = $this->Auth->user('id');
+                $produto->caminho_imagem = $imagem['destino'] . $imagem['nome'];
+
                 if ($this->Produto->save($produto)) {
-                    if ($produto->caminho_imagem) {
-                        if ($this->Produto->uploadImagem($imagem, $produto->caminho_imagem)) {
-                            $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
-                        }
-                        else {
-                            $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso, porém não foi possível salvar a imagem.'));
-                        }
+                    if ($this->Produto->uploadImagem($imagem)) {
+                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
                     }
                     else {
-                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
+                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso, porém não foi possível salvar a imagem.'));
                     }
                 }
                 else {
                     $this->Flash->success(__('Não foi possível salvar o produto, ferifique se todos os dados estão corretos.'));
                 }
+            }
+            else {
+                $this->Flash->error(__($imagem['mensagem']));
             }
         }
         $categoria = $this->Produto->Categoria->find('list', [
