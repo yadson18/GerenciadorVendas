@@ -26,7 +26,10 @@ class ProdutoController extends AppController
     public function index()
     {
         $filtro = [];
-        $this->paginate = ['contain' => ['Categoria'], 'limit' => 24];
+        $this->paginate = ['limit' => 24, 'fields' => [
+            'id', 'nome', 'descricao', 'valor_venda', 
+            'caminho_imagem', 'quantidade_estoque'
+        ]];
 
         if ($this->request->getParam('?')) {
             $filtro = $this->request->getParam('?');
@@ -37,17 +40,15 @@ class ProdutoController extends AppController
                 $this->paginate['conditions'] = ['Produto.categoria_id IN' => $categorias];
             }
             else if (isset($filtro['busca'])) {
-                $this->paginate['conditions'] = [
-                    'OR' => [
-                        'Produto.codigo_produto LIKE' => '%' . $filtro['busca'] . '%',
-                        'Produto.nome LIKE' => '%' . $filtro['busca'] . '%',
-                        'Produto.descricao LIKE' => '%' . $filtro['busca'] . '%'
-                    ]
-                ];
+                $this->paginate['conditions'] = ['OR' => [
+                    'Produto.codigo_produto LIKE' => '%' . $filtro['busca'] . '%',
+                    'Produto.nome LIKE' => '%' . $filtro['busca'] . '%',
+                    'Produto.descricao LIKE' => '%' . $filtro['busca'] . '%'
+                ]];
             }
         }
         $produto = $this->paginate($this->Produto);
-        $categoria = $this->Produto->Categoria->find('all')->toArray();
+        $categoria = $this->Produto->Categoria->find('ProdutosPorCategoria');
 
         $this->set(compact('produto', 'categoria', 'filtro'));
     }
@@ -116,7 +117,7 @@ class ProdutoController extends AppController
         $categoria = $this->Produto->Categoria->find('list', [
             'keyField' => 'id',
             'valueField' => 'descricao',
-            'limit' => 200
+            'limit' => 100
         ]);
         $this->set(compact('produto', 'categoria'));
     }

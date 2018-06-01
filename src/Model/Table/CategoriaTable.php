@@ -71,4 +71,17 @@ class CategoriaTable extends Table
 
         return $rules;
     }
+
+    public function findProdutosPorCategoria(Query $consulta)
+    {
+        return $consulta->select([
+            'id' => 'Categoria.id',
+            'descricao' => $consulta->func()->concat([
+                'Categoria.descricao' => 'identifier', 
+                ' (', $consulta->func()->count('Produto.id'), ')'
+            ])
+        ])
+        ->leftJoin(['Produto' => 'produto'], 'Produto.categoria_id = Categoria.id')
+        ->group(['Categoria.id']);
+    }
 }

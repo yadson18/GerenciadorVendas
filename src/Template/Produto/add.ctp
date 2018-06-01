@@ -10,7 +10,7 @@
                 </div>
                 <div class='form-group col-sm-5'>
                     <label>
-                        <?= __('Código de barras') ?><span class='required'> *</span>
+                        <?= __('Código referência') ?><span class='required'> *</span>
                     </label> 
                     <?= $this->Form->control('codigo_produto', [
                             'placeholder' => 'Ex: 0171825',
@@ -91,11 +91,20 @@
                     ?>
                 </div>
                 <div class='form-group col-sm-4'>
-                    <?= $this->Form->control('categoria_id', [
-                            'class' => 'form-control',
-                            'options' => $categoria
-                        ]) 
-                    ?>
+                    <label>Categoria</label>
+                    <div class='input-group'>
+                        <?= $this->Form->control('categoria_id', [
+                                'class' => 'form-control',
+                                'options' => $categoria,
+                                'label' => false
+                            ]) 
+                        ?>
+                        <span class='input-group-btn'>
+                            <button class='browse btn btn-success' type='button'>
+                                <i class='fas fa-plus'></i>
+                            </button>
+                        </span>
+                    </div>
                 </div>
                 <div class='form-group col-sm-6'>
                     <label><?= __('Imagem do produto') ?></label>
@@ -115,7 +124,6 @@
                             </button>
                         </span>
                     </div>
-
                 </div>
                 <div class='form-group col-sm-12'>
                     <label>Descrição do produto</label>

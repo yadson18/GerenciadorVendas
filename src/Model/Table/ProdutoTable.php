@@ -133,14 +133,13 @@ class ProdutoTable extends Table
         return $rules;
     }
 
-    public function findEstatisticaBasica()
+    public function findEstatisticaBasica(Query $consulta)
     {
-        $query = $this->find();
-        return $query->select([
-            'cadastradosTotal' => $query->func()->count('id'),
-            'cadastradosHoje' => $query->func()->count(
-                $query->newExpr()->addCase(
-                    $query->newExpr()->add(['date(data_criacao)' => date('Y-m-d')])
+        return $consulta->select([
+            'cadastradosTotal' => $consulta->func()->count('id'),
+            'cadastradosHoje' => $consulta->func()->count(
+                $consulta->newExpr()->addCase(
+                    $consulta->newExpr()->add(['date(data_criacao)' => date('Y-m-d')])
                 )
             )
         ]);
