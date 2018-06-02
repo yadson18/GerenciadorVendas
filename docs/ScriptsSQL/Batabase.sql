@@ -295,11 +295,24 @@ engine = innodb;
 -- -----------------------------------------------------
 -- table `hinode`.`categoria`
 -- -----------------------------------------------------
+
+
 create table if not exists `hinode`.`categoria` (
   `id` int not null auto_increment,
   `descricao` varchar(30) not null,
+  `direita` int not null,
+  `esquerda` int not null,
+  `data_criacao` timestamp default current_timestamp,
+  `data_alteracao` timestamp default current_timestamp,
+  `categoria_pai_id` int null,
   primary key (`id`),
-  unique index `id_unique` (`id` asc))
+  unique index `id_unique` (`id` asc),
+  index `fk_categoria_categoria1_idx` (`categoria_pai_id` asc),
+  constraint `fk_categoria_categoria1`
+    foreign key (`categoria_pai_id`)
+    references `hinode`.`categoria` (`id`)
+    on delete no action
+    on update no action)
 engine = innodb;
 
 
@@ -322,6 +335,7 @@ create table if not exists `hinode`.`produto` (
   `categoria_id` int not null,
   primary key (`id`),
   unique index `id_unique` (`id` asc),
+  unique index `codigo_produto_unique` (`codigo_produto` asc),
   index `fk_produto_usuario1_idx` (`criado_por` asc),
   index `fk_produto_usuario2_idx` (`alterado_por` asc),
   index `fk_produto_categoria1_idx` (`categoria_id` asc),

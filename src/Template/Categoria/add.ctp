@@ -16,6 +16,7 @@
         <legend><?= __('Add Categorium') ?></legend>
         <?php
             echo $this->Form->control('descricao');
+            echo $this->Form->control('categoria_pai_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

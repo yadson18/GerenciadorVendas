@@ -67,7 +67,8 @@ class ProdutoTable extends Table
             ->scalar('codigo_produto')
             ->maxLength('codigo_produto', 25)
             ->requirePresence('codigo_produto', 'create')
-            ->notEmpty('codigo_produto');
+            ->notEmpty('codigo_produto')
+            ->add('codigo_produto', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('nome')
@@ -105,7 +106,7 @@ class ProdutoTable extends Table
 
         $validator
             ->dateTime('data_criacao')
-            ->allowEmpty('data_criacao');
+            ->notEmpty('data_criacao');
 
         $validator
             ->integer('alterado_por')
@@ -114,7 +115,7 @@ class ProdutoTable extends Table
 
         $validator
             ->dateTime('data_alteracao')
-            ->allowEmpty('data_alteracao');
+            ->notEmpty('data_alteracao');
 
         return $validator;
     }
@@ -148,11 +149,11 @@ class ProdutoTable extends Table
 
     public function validarImagem(array $imagem)
     {
-        if (isset($imagem['error']) && $imagem['error'] === 0) {
-            $imagem = new File($imagem['tmp_name']);
+        if (isset($imagem['error'])) {
+            switch ($imagem['error']) {
+                case UPLOAD_ERR_OK:
+                    $imagem = new File($imagem['tmp_name']);
 
-            if ($imagem->exists()) {
-                if ($imagem->size() <= 300000) {  
                     $mime = explode('/', $imagem->mime());
 
                     if (array_shift($mime) === 'image') {
@@ -169,21 +170,21 @@ class ProdutoTable extends Table
                         'erro' => true,
                         'mensagem' => 'Por favor, selecione uma imagem válida.'
                     ];
-                }
-                return [
-                    'erro' => true,
-                    'mensagem' => 'O tamanho da imagem, não pode ser superior a (3Mb).'
-                ];
+                    break;
+                case UPLOAD_ERR_INI_SIZE:
+                    return [
+                        'erro' => true,
+                        'mensagem' => 'O tamanho da imagem, não pode ser superior a (3Mb).'
+                    ];
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    return ['erro' => false];
+                    break;
             }
-            return [
-                'erro' => false,
-                'nome_imagem' => 'sem-imagem',
-                'destino' =>  'produtos' . DS . '.gif'
-            ];
         }
         return [
             'erro' => true,
-            'mensagem' => 'O tipo do arquivo é inválido ou o tamanho do arquivo é superior a (3Mb).'
+            'mensagem' => 'Erro desconhecido, por favor, contate o administrador do sistema.'
         ];
     }
 

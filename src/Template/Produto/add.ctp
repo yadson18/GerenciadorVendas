@@ -91,7 +91,7 @@
                     ?>
                 </div>
                 <div class='form-group col-sm-4'>
-                    <label>Categoria</label>
+                    <label><?= __('Categoria') ?></label>
                     <div class='input-group'>
                         <?= $this->Form->control('produto[categoria_id]', [
                                 'class' => 'form-control',
@@ -100,9 +100,13 @@
                             ]) 
                         ?>
                         <span class='input-group-btn'>
-                            <button class='browse btn btn-success' type='button'>
-                                <i class='fas fa-plus'></i>
-                            </button>
+                            <?= $this->Form->button('<i class="fas fa-plus"></i>', [
+                                'class' => 'btn btn-success',
+                                'data-target' => '#categoria-add',
+                                'data-toggle' => 'modal',
+                                'type' => 'button',
+                                'escape' => false,
+                            ]) ?>
                         </span>
                     </div>
                 </div>
@@ -117,19 +121,31 @@
                         <span class='input-group-addon'>
                             <i class='far fa-image'></i>
                         </span>
-                        <input type='text' class='form-control file-name' disabled placeholder='Selecione um arquivo'>
+                        <?= $this->Form->control('arquivo_nome', [
+                            'placeholder' => 'Selecione um arquivo',
+                            'class' => 'form-control file-name',
+                            'disabled' => true,
+                            'label' => false,
+                            'name' => false
+                        ]) ?>
                         <span class='input-group-btn'>
-                            <button class='browse btn btn-primary' type='button'>
-                                <i class='far fa-folder-open'></i> Buscar
-                            </button>
+                            <?= $this->Form->button(
+                                '<i class="far fa-folder-open"></i> ' . __('Buscar'), [
+                                    'class' => 'browse btn btn-primary',
+                                    'type' => 'button',
+                                    'escape' => false,
+                                    'label' => false
+                                ]
+                            ) ?>
                         </span>
                     </div>
                 </div>
                 <div class='form-group col-sm-12'>
-                    <label>Descrição do produto</label>
+                    <label><?= __('Descrição do produto') ?></label>
                     <?= $this->Form->textArea('produto[descricao]', [
                             'placeholder' => 'Digite uma descrição...',
                             'class' => 'form-control',
+                            'maxlength' => 1100,
                             'label' => false
                         ]) 
                     ?>
@@ -137,16 +153,75 @@
             </div>
             <div class='form-footer row'>
                 <div class='form-group col-sm-5'>
-                    <a href='/produto/index' class='btn btn-primary btn-block'>
-                        <i class='fas fa-angle-double-left'></i> <?= __('Retornar') ?>
-                    </a>
+                    <?= $this->Html->link(
+                        '<i class="fas fa-angle-double-left"></i> ' . __('Retornar'), 
+                        ['action' => 'index', '_full' => true], 
+                        ['class' => 'btn btn-primary btn-block', 'escape' => false]
+                    ) ?>
                 </div>
                 <div class='form-group col-sm-7'>
-                    <button class='btn btn-success btn-block' type='submit'>
-                        <?= __('Salvar') ?> <i class='fas fa-save'></i>
-                    </button>
+                    <?= $this->Form->button(
+                        __('Salvar') . ' <i class="fas fa-save"></i>', [
+                            'class' => 'btn btn-success btn-block',
+                            'escape' => false,
+                            'label' => false
+                        ]
+                    ) ?>
                 </div>
             </div>
         <?= $this->Form->end() ?>
+    </div>
+    <!-- Modal Adicionar Categoria -->
+    <div id='categoria-add' class='modal fade' role='dialog'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                    <h4 class='modal-title text-center'>Nova Categoria</h4>
+                </div>
+                <div class='modal-body'>
+                    <?= $this->Form->create('', ['action' => false, 'type' => false]) ?>
+                        <div class='row'>
+                            <div class='form-group col-sm-5'>
+                                <?= $this->Form->control('categoria_pai_id', [
+                                        'class' => 'form-control',
+                                        'options' => array_merge(['-- Sem Categoria --'], $categoria->toArray()),
+                                        'label' => 'Categoria (Pai)'
+                                    ]) 
+                                ?>
+                            </div>
+                            <div class='form-group col-sm-7'>
+                                <label>
+                                    <?= __('Descrição') ?><span class='required'> *</span>
+                                </label>
+                                <?= $this->Form->control('descricao', [
+                                        'placeholder' => 'Ex: Perfumaria',
+                                        'class' => 'form-control',
+                                        'label' => false
+                                    ]) 
+                                ?>
+                            </div>
+                        </div>
+                    <?= $this->Form->end() ?>
+                </div>
+                <div class='modal-footer'>
+                    <?= $this->Form->button(
+                        __('Fechar') . ' <i class="fas fa-times"></i>', [
+                            'class' => 'btn btn-danger',
+                            'data-dismiss' => 'modal',
+                            'escape' => false,
+                            'label' => false
+                        ]
+                    ) ?>
+                    <?= $this->Form->button(
+                        __('Salvar') . ' <i class="fas fa-save"></i>', [
+                            'class' => 'btn btn-success save',
+                            'escape' => false,
+                            'label' => false
+                        ]
+                    ) ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

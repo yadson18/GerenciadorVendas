@@ -22,6 +22,11 @@
         <legend><?= __('Edit Categorium') ?></legend>
         <?php
             echo $this->Form->control('descricao');
+            echo $this->Form->control('direita');
+            echo $this->Form->control('esquerda');
+            echo $this->Form->control('data_criacao');
+            echo $this->Form->control('data_alteracao');
+            echo $this->Form->control('categoria_pai_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

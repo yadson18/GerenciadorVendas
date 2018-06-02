@@ -17,6 +17,11 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('direita') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('esquerda') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('data_criacao') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('data_alteracao') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('categoria_pai_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -25,6 +30,11 @@
             <tr>
                 <td><?= $this->Number->format($categorium->id) ?></td>
                 <td><?= h($categorium->descricao) ?></td>
+                <td><?= $this->Number->format($categorium->direita) ?></td>
+                <td><?= $this->Number->format($categorium->esquerda) ?></td>
+                <td><?= h($categorium->data_criacao) ?></td>
+                <td><?= h($categorium->data_alteracao) ?></td>
+                <td><?= $this->Number->format($categorium->categoria_pai_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $categorium->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $categorium->id]) ?>

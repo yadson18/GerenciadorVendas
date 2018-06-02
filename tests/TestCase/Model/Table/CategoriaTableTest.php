@@ -80,4 +80,14 @@ class CategoriaTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test findProdutosPorCategoria method
+     *
+     * @return void
+     */
+    public function testFindProdutosPorCategoria()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

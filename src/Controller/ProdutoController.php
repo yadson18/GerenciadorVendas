@@ -87,18 +87,25 @@ class ProdutoController extends AppController
                 $produto->valor_venda = $this->Conversor->moneyToFloat($produto->valor_venda);
                 $produto->criado_por = $this->Auth->user('id');
                 $produto->alterado_por = $this->Auth->user('id');
-                $produto->caminho_imagem = $imagem['destino'] . $imagem['nome'];
 
+                if (isset($imagem['destino']) && isset($imagem['nome'])) {
+                    $produto->caminho_imagem = $imagem['destino'] . $imagem['nome'];
+                }
                 if ($this->Produto->save($produto)) {
-                    if ($this->Produto->uploadImagem($imagem)) {
-                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
+                    if (isset($produto->caminho_imagem)) {
+                        if ($this->Produto->uploadImagem($imagem)) {
+                            $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
+                        }
+                        else {
+                            $this->Flash->warning(__('O produto (' . $produto->nome . ') foi salvo com sucesso, porém não foi possível salvar a imagem.'));
+                        }
                     }
                     else {
-                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso, porém não foi possível salvar a imagem.'));
+                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
                     }
                 }
                 else {
-                    $this->Flash->success(__('Não foi possível salvar o produto, ferifique se todos os dados estão corretos.'));
+                    $this->Flash->error(__('Não foi possível salvar o produto, o código referência já encontra-se em uso.'));
                 }
             }
             else {

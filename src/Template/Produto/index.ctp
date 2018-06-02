@@ -28,7 +28,7 @@
                                 'escape' => false,
                                 'label' => false
                             ]
-                    ) ?>
+                        ) ?>
                     </span>
                 </div>
             </div>
@@ -37,7 +37,7 @@
     <div class='row'>
         <div class='filter col-sm-3 hidden-xs'>
             <div class='filter-header'>
-                <h3 class='text-center'>Categorias</h3>
+                <h3 class='text-center'><?= __('Categorias') ?></h3>
             </div>
             <div class='filter-body'>
                 <div class='checkbox'>
@@ -141,7 +141,7 @@
                 <?php else: ?>
                     <div class='col-sm-8 nothing-found text-center'>
                         <i class='far fa-frown fa-lg'></i>
-                        <p>Nenhum produto encontrado.</p>
+                        <p><?= __('Nenhum produto encontrado.') ?></p>
                     </div>
                 <?php endif ?>
             </div>

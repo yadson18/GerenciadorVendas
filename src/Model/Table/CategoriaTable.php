@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Categoria Model
  *
+ * @property |\Cake\ORM\Association\BelongsTo $Categoria
+ *
  * @method \App\Model\Entity\Categorium get($primaryKey, $options = [])
  * @method \App\Model\Entity\Categorium newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Categorium[] newEntities(array $data, array $options = [])
@@ -34,6 +36,15 @@ class CategoriaTable extends Table
         $this->setTable('categoria');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Tree', [
+            'parent' => 'categoria_pai_id', 
+            'left' => 'esquerda', 
+            'right' => 'direita' 
+        ]);
+        $this->belongsTo('Categoria', [
+            'foreignKey' => 'categoria_pai_id'
+        ]);
     }
 
     /**
@@ -55,6 +66,22 @@ class CategoriaTable extends Table
             ->requirePresence('descricao', 'create')
             ->notEmpty('descricao');
 
+        $validator
+            ->integer('direita')
+            ->notEmpty('direita');
+
+        $validator
+            ->integer('esquerda')
+            ->notEmpty('esquerda');
+
+        $validator
+            ->dateTime('data_criacao')
+            ->notEmpty('data_criacao');
+
+        $validator
+            ->dateTime('data_alteracao')
+            ->notEmpty('data_alteracao');
+
         return $validator;
     }
 
@@ -68,6 +95,7 @@ class CategoriaTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['id']));
+        $rules->add($rules->existsIn(['categoria_pai_id'], 'Categoria'));
 
         return $rules;
     }

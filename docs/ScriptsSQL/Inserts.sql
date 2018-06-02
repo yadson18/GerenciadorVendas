@@ -5898,7 +5898,7 @@ insert into `cidade` (`nome`, `estado_id`, `cod_cidade`) values
 -- ------------------------------------------
 -- - insert categoria 
 -- ------------------------------------------
-insert into `categoria` (`descricao`) values 
+/*insert into `categoria` (`descricao`) values 
   ('Teen'),
   ('Rosto'),
   ('Perfumaria Masculina'),
@@ -5908,7 +5908,7 @@ insert into `categoria` (`descricao`) values
   ('Bem Estar'),
   ('Criações Hinode Masculino'),
   ('Criações Hinode Feminino'),
-  ('Barba');
+  ('Barba');*/
 
 
 -- ------------------------------------------

@@ -24,5 +24,25 @@
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($categorium->id) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Direita') ?></th>
+            <td><?= $this->Number->format($categorium->direita) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Esquerda') ?></th>
+            <td><?= $this->Number->format($categorium->esquerda) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Categoria Pai Id') ?></th>
+            <td><?= $this->Number->format($categorium->categoria_pai_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Data Criacao') ?></th>
+            <td><?= h($categorium->data_criacao) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Data Alteracao') ?></th>
+            <td><?= h($categorium->data_alteracao) ?></td>
+        </tr>
     </table>
 </div>
