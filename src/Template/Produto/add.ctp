@@ -13,6 +13,7 @@
                         <?= __('Código referência') ?><span class='required'> *</span>
                     </label> 
                     <?= $this->Form->control('produto[codigo_produto]', [
+                            'value' => h($produto->codigo_produto),
                             'placeholder' => 'Ex: 0171825',
                             'class' => 'form-control',
                             'required' => true,
@@ -26,6 +27,7 @@
                     </label>
                     <?= $this->Form->control('produto[nome]', [
                             'placeholder' => 'Ex: Empire Intense (100ml)',
+                            'value' => h($produto->nome),
                             'class' => 'form-control',
                             'label' => false
                         ]) 
@@ -36,6 +38,10 @@
                         <?= __('Preço compra (R$)') ?><span class='required'> *</span>
                     </label> 
                     <?= $this->Form->control('produto[valor_compra]', [
+                            'value' => $this->Number->format($produto->valor_compra, [
+                                'precision' => 2,
+                                'places' => 2
+                            ]),
                             'class' => 'form-control money',
                             'placeholder' => 'Ex: 40,00',
                             'id' => 'preco-compra',
@@ -72,6 +78,10 @@
                         <?= __('Preço venda (R$)') ?><span class='required'> *</span>
                     </label>
                     <?= $this->Form->control('produto[valor_venda]', [
+                            'value' => $this->Number->format($produto->valor_venda, [
+                                'precision' => 2,
+                                'places' => 2
+                            ]),
                             'class' => 'form-control money',
                             'placeholder' => 'Ex: 60,00',
                             'label' => false,
@@ -84,6 +94,7 @@
                         <?= __('Estoque') ?><span class='required'> *</span>
                     </label>
                     <?= $this->Form->control('produto[quantidade_estoque]', [
+                            'value' => h($produto->quantidade_estoque),
                             'class' => 'form-control',
                             'placeholder' => 'Ex: 15',
                             'label' => false
@@ -94,15 +105,17 @@
                     <label><?= __('Categoria') ?></label>
                     <div class='input-group'>
                         <?= $this->Form->control('produto[categoria_id]', [
+                                'value' => h($produto->categoria_id),
                                 'class' => 'form-control',
                                 'options' => $categoria,
+                                'escape' => false,
                                 'label' => false
                             ]) 
                         ?>
                         <span class='input-group-btn'>
                             <?= $this->Form->button('<i class="fas fa-plus"></i>', [
-                                'class' => 'btn btn-success',
                                 'data-target' => '#categoria-add',
+                                'class' => 'btn btn-success',
                                 'data-toggle' => 'modal',
                                 'type' => 'button',
                                 'escape' => false,
@@ -144,6 +157,7 @@
                     <label><?= __('Descrição do produto') ?></label>
                     <?= $this->Form->textArea('produto[descricao]', [
                             'placeholder' => 'Digite uma descrição...',
+                            'value' => h($produto->descricao),
                             'class' => 'form-control',
                             'maxlength' => 1100,
                             'label' => false
@@ -171,56 +185,66 @@
             </div>
         <?= $this->Form->end() ?>
     </div>
-    <!-- Modal Adicionar Categoria -->
-    <div id='categoria-add' class='modal fade' role='dialog'>
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-                <div class='modal-header'>
-                    <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                    <h4 class='modal-title text-center'>Nova Categoria</h4>
-                </div>
-                <div class='modal-body'>
-                    <?= $this->Form->create('', ['action' => false, 'type' => false]) ?>
-                        <div class='row'>
-                            <div class='form-group col-sm-5'>
-                                <?= $this->Form->control('categoria_pai_id', [
-                                        'class' => 'form-control',
-                                        'options' => array_merge(['-- Sem Categoria --'], $categoria->toArray()),
-                                        'label' => 'Categoria (Pai)'
-                                    ]) 
-                                ?>
-                            </div>
-                            <div class='form-group col-sm-7'>
-                                <label>
-                                    <?= __('Descrição') ?><span class='required'> *</span>
-                                </label>
-                                <?= $this->Form->control('descricao', [
-                                        'placeholder' => 'Ex: Perfumaria',
-                                        'class' => 'form-control',
-                                        'label' => false
-                                    ]) 
-                                ?>
-                            </div>
+</div>
+<!-- Modal Adicionar Categoria -->
+<div id='categoria-add' class='modal fade' role='dialog'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h4 class='modal-title text-center'><?= __('Nova Categoria') ?></h4>
+            </div>
+            <div class='modal-body'>
+                <?= $this->Form->create('', [
+                    'id' => 'form-categoria',
+                    'url' => [
+                        'controller' => 'categoria',
+                        'action' => 'add'
+                    ]
+                ]) ?>
+                    <div class='row'>
+                        <div class='form-group col-sm-5'>
+                            <?= $this->Form->control('categoria_pai_id', [
+                                    'empty' => '-- Sem categoria --',
+                                    'label' => 'Categoria (Pai)',
+                                    'class' => 'form-control',
+                                    'options' => $categoria,
+                                    'escape' => false
+                                ]) 
+                            ?>
                         </div>
-                    <?= $this->Form->end() ?>
-                </div>
-                <div class='modal-footer'>
-                    <?= $this->Form->button(
-                        __('Fechar') . ' <i class="fas fa-times"></i>', [
-                            'class' => 'btn btn-danger',
-                            'data-dismiss' => 'modal',
-                            'escape' => false,
-                            'label' => false
-                        ]
-                    ) ?>
-                    <?= $this->Form->button(
-                        __('Salvar') . ' <i class="fas fa-save"></i>', [
-                            'class' => 'btn btn-success save',
-                            'escape' => false,
-                            'label' => false
-                        ]
-                    ) ?>
-                </div>
+                        <div class='form-group col-sm-7'>
+                            <label>
+                                <?= __('Descrição') ?><span class='required'> *</span>
+                            </label>
+                            <?= $this->Form->control('descricao', [
+                                    'placeholder' => 'Ex: Perfumaria',
+                                    'class' => 'form-control',
+                                    'required' => true,
+                                    'label' => false
+                                ]) 
+                            ?>
+                        </div>
+                    </div>
+                <?= $this->Form->end() ?>
+            </div>
+            <div class='modal-footer'>
+                <?= $this->Form->button(
+                    __('Fechar') . ' <i class="fas fa-times"></i>', [
+                        'class' => 'btn btn-danger',
+                        'data-dismiss' => 'modal',
+                        'escape' => false,
+                        'label' => false
+                    ]
+                ) ?>
+                <?= $this->Form->button(
+                    __('Salvar') . ' <i class="fas fa-save"></i>', [
+                        'class' => 'btn btn-success',
+                        'form' => 'form-categoria',
+                        'escape' => false,
+                        'label' => false
+                    ]
+                ) ?>
             </div>
         </div>
     </div>

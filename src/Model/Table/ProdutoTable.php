@@ -68,7 +68,11 @@ class ProdutoTable extends Table
             ->maxLength('codigo_produto', 25)
             ->requirePresence('codigo_produto', 'create')
             ->notEmpty('codigo_produto')
-            ->add('codigo_produto', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('codigo_produto', 'unique', [
+                'message' => 'O código do produto já encontra-se em uso.',
+                'rule' => 'validateUnique', 
+                'provider' => 'table'
+            ]);
 
         $validator
             ->scalar('nome')

@@ -122,24 +122,4 @@ $(document).ready(function() {
     $('.search button').on('click', buscaProduto);
 
     $('.search input[name=busca]').on('keypress', buscaProduto);
-
-    $('#categoria-add .save').on('click', function() {
-        var $categoria = {};
-        var form_array = $('#categoria-add form').serializeArray();
-
-        $.each(form_array, function() { 
-            $categoria[this.name] = this.value || ''; 
-        });
-
-        $.ajax({
-            url: '/categoria/add',
-            method: 'POST',
-            data: $categoria
-        })
-        .always(function(dados, status) {
-            if (status === 'success') {
-                console.log(dados);
-            }
-        });
-    });
 });

@@ -48,17 +48,17 @@ class CategoriaController extends AppController
      */
     public function add()
     {
-        $categorium = $this->Categoria->newEntity();
+        $categoria = $this->Categoria->newEntity();
         if ($this->request->is('post')) {
-            $categorium = $this->Categoria->patchEntity($categorium, $this->request->getData());
-            if ($this->Categoria->save($categorium)) {
-                $this->Flash->success(__('The categorium has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            $categoria = $this->Categoria->patchEntity($categoria, $this->request->getData());
+            if ($this->Categoria->save($categoria)) {
+                $this->Flash->success('A categoria (' . $categoria->descricao . ') foi salva com sucesso.');
             }
-            $this->Flash->error(__('The categorium could not be saved. Please, try again.'));
+            else {
+                $this->Flash->error('Não foi possível salvar a categoria (' . $categoria->descricao . ').');
+            }
         }
-        $this->set(compact('categorium'));
+        return $this->redirect(['controller' => 'produto', 'action' => 'add']);
     }
 
     /**

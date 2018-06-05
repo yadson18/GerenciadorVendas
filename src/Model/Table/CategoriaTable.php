@@ -40,7 +40,7 @@ class CategoriaTable extends Table
         $this->addBehavior('Tree', [
             'parent' => 'categoria_pai_id', 
             'left' => 'esquerda', 
-            'right' => 'direita' 
+            'right' => 'direita'
         ]);
         $this->belongsTo('Categoria', [
             'foreignKey' => 'categoria_pai_id'

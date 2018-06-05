@@ -77,21 +77,18 @@ class ProdutoController extends AppController
     public function add()
     {
         $produto = $this->Produto->newEntity();
-        
         if ($this->request->is('post')) {
             $imagem = $this->Produto->validarImagem($this->request->getData('imagem'));
-
             if (!$imagem['erro']) {
                 $produto = $this->Produto->patchEntity($produto, $this->request->getData('produto'));
                 $produto->valor_compra = $this->Conversor->moneyToFloat($produto->valor_compra);
                 $produto->valor_venda = $this->Conversor->moneyToFloat($produto->valor_venda);
-                $produto->criado_por = $this->Auth->user('id');
                 $produto->alterado_por = $this->Auth->user('id');
-
+                $produto->criado_por = $this->Auth->user('id');
                 if (isset($imagem['destino']) && isset($imagem['nome'])) {
                     $produto->caminho_imagem = $imagem['destino'] . $imagem['nome'];
                 }
-                if ($this->Produto->save($produto)) {
+                if (!$produto->errors() && $this->Produto->save($produto)) {
                     if (isset($produto->caminho_imagem)) {
                         if ($this->Produto->uploadImagem($imagem)) {
                             $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
@@ -105,17 +102,25 @@ class ProdutoController extends AppController
                     }
                 }
                 else {
-                    $this->Flash->error(__('Não foi possível salvar o produto, o código referência já encontra-se em uso.'));
+                    $erros = '';
+                    foreach ($produto->errors() as $regras) {
+                        foreach ($regras as $mensagem) {
+                            $erros .= '<li>' . $mensagem . '</li>';
+                        }
+                    }
+                    $formato = '%s<ul class="error-list">%s</ul>';
+                    $mensagem = '<strong>Não foi possível salvar o produto.</strong><br>';
+                    $this->Flash->error(sprintf($formato, $mensagem, $erros), ['escape' => false]);
                 }
             }
             else {
                 $this->Flash->error(__($imagem['mensagem']));
             }
         }
-        $categoria = $this->Produto->Categoria->find('list', [
-            'keyField' => 'id',
-            'valueField' => 'descricao',
-            'limit' => 100
+        $categoria = $this->Produto->Categoria->find('treeList', [
+            'keyPath' => 'id',
+            'valuePath' => 'descricao',
+            'spacer' => '&nbsp;&nbsp;'
         ]);
         $this->set(compact('produto', 'categoria'));
     }

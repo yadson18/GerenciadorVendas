@@ -4,12 +4,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Categoria Entity
+ * Categorium Entity
  *
  * @property int $id
  * @property string $descricao
+ * @property int $direita
+ * @property int $esquerda
+ * @property \Cake\I18n\FrozenTime $data_criacao
+ * @property \Cake\I18n\FrozenTime $data_alteracao
+ * @property int $categoria_pai_id
  */
-class Categoria extends Entity
+class Categorium extends Entity
 {
 
     /**
@@ -22,6 +27,11 @@ class Categoria extends Entity
      * @var array
      */
     protected $_accessible = [
-        'descricao' => true
+        'descricao' => true,
+        'direita' => true,
+        'esquerda' => true,
+        'data_criacao' => true,
+        'data_alteracao' => true,
+        'categoria_pai_id' => true
     ];
 }
