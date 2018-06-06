@@ -5,9 +5,7 @@
                 <h2 class='page-header'><?= __('Novo Produto') ?></h2>
             </div>
             <div class='form-body row'>
-                <div class='message-box col-sm-12'>
-                    <?= $this->Flash->render() ?>  
-                </div>
+                <div class='message-box col-sm-12'><?= $this->Flash->render() ?></div>
                 <div class='form-group col-sm-5'>
                     <label>
                         <?= __('Código referência') ?><span class='required'> *</span>
@@ -102,12 +100,16 @@
                     ?>
                 </div>
                 <div class='form-group col-sm-4'>
-                    <label><?= __('Categoria') ?></label>
+                    <label>
+                        <?= __('Categoria') ?><span class='required'> *</span>
+                    </label>
                     <div class='input-group'>
                         <?= $this->Form->control('produto[categoria_id]', [
+                                'empty' => ($categoria->count() > 0) ? false : '-- Selecione --',
                                 'value' => h($produto->categoria_id),
                                 'class' => 'form-control',
                                 'options' => $categoria,
+                                'required' => true,
                                 'escape' => false,
                                 'label' => false
                             ]) 

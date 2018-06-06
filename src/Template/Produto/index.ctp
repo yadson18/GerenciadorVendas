@@ -1,7 +1,5 @@
 <div id='produto-index' class='container-fluid'>
-    <div class='message-box'>
-        <?= $this->Flash->render() ?>  
-    </div>
+    <div class='message-box'><?= $this->Flash->render() ?></div>
     <div class='page-header'>
         <div class='row'> 
             <div class='col-sm-3 form-group'>
@@ -36,24 +34,26 @@
     </div>
     <div class='row'>
         <div class='filter col-sm-3 hidden-xs'>
-            <div class='filter-header'>
-                <h3 class='text-center'><?= __('Categorias') ?></h3>
-            </div>
-            <div class='filter-body'>
-                <div class='checkbox'>
-                    <?php foreach ($categoria as $categoria): ?>
-                        <div>
-                            <?= $this->Form->control(__($categoria->descricao), [
-                                'value' => $categoria->id,
-                                'name' => 'categoria[]',
-                                'checked' => (isset($filtro['categoria'])) 
-                                    ? in_array($categoria->id, $filtro['categoria'])
-                                    : false
-                            ]) ?>
-                        </div>
-                    <?php endforeach; ?>
+            <?php if ($categoria->count() > 0): ?>
+                <div class='filter-header'>
+                    <h3 class='text-center'><?= __('Categorias') ?></h3>
                 </div>
-            </div>
+                <div class='filter-body'>
+                    <div class='checkbox'>
+                        <?php foreach ($categoria as $categoria): ?>
+                            <div>
+                                <?= $this->Form->control(__($categoria->descricao), [
+                                    'value' => $categoria->id,
+                                    'name' => 'categoria[]',
+                                    'checked' => (isset($filtro['categoria'])) 
+                                        ? in_array($categoria->id, $filtro['categoria'])
+                                        : false
+                                ]) ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif ?>
         </div>
         <div class='col-sm-9'>
             <p class='sort form-group'>
@@ -167,8 +167,7 @@
             <?= $this->Paginator->counter([
                 'escape' => false, 
                 'format' => __(
-                    'Exibindo <strong>{{current}}</strong> 
-                    produto(s) de um total de <strong>{{count}}</strong>.'
+                    'Exibindo <strong>{{current}}</strong> produto(s) de <strong>{{count}}</strong>.'
                 )
             ]) ?>
         </p>
