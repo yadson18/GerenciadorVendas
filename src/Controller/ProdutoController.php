@@ -30,10 +30,8 @@ class ProdutoController extends AppController
             'id', 'nome', 'descricao', 'valor_venda', 
             'caminho_imagem', 'quantidade_estoque'
         ]];
-
         if ($this->request->getParam('?')) {
             $filtro = $this->request->getParam('?');
-            
             if (isset($filtro['categoria'])) {
                 $categorias = array_map('intval', array_values($filtro['categoria']));
 
@@ -47,31 +45,12 @@ class ProdutoController extends AppController
                 ]];
             }
         }
-
-        /*$ct = $this->Produto->Categoria->find('treeList', [
-                'keyPath' => 'id',
-                'valuePath' => 'descricao',
-                'spacer' => '&nbsp;&nbsp;'
-            ]);*/
-
-        /*$ct = $this->Produto->Categoria->find();
-        $ct = $ct->select([
-            'id', 
-            'descricao' => $ct->func()->concat([
-                $ct->func()->repeat([
-                    '-', $ct->find('all')->count()
-                ]), 
-                'Categoria.descricao' => 'identifier'
-            ]),
-            'quantidade_produto' => $ct->func()->count('Produto.id')
-        ])
-        ->leftJoin(['Produto' => 'produto'], 'Produto.categoria_id = Categoria.id')
-        ->group(['Categoria.id'])
-        ->order(['Categoria.esquerda' => 'ASC']);*/
-
         $produto = $this->paginate($this->Produto);
-        $categoria = $this->Produto->Categoria->find('ProdutosPorCategoria');
-
+        $categoria = $this->Produto->Categoria->find('treeList', [
+            'keyPath' => 'id',
+            'valuePath' => 'descricao',
+            'spacer' => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+        ]);
         $this->set(compact('produto', 'categoria', 'filtro'));
     }
 

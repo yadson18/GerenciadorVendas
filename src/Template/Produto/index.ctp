@@ -40,15 +40,29 @@
                 </div>
                 <div class='filter-body'>
                     <div class='checkbox'>
-                        <?php foreach ($categoria as $categoria): ?>
-                            <div>
-                                <?= $this->Form->control(__($categoria->descricao), [
-                                    'value' => $categoria->id,
-                                    'name' => 'categoria[]',
-                                    'checked' => (isset($filtro['categoria'])) 
-                                        ? in_array($categoria->id, $filtro['categoria'])
-                                        : false
-                                ]) ?>
+                        <?php foreach ($categoria as $id => $descricao): ?>
+                            <?php 
+                                $delimitador = strrpos($descricao, ';');
+                                $tabulacao = substr($descricao, 0, $delimitador);
+                                if ($delimitador) {
+                                    $descricao = substr($descricao, ($delimitador + 1));
+                                }
+                            ?>
+                            <div class='input checkbox'>
+                                <label for=<?= $descricao ?>> 
+                                    <?= $tabulacao ?>
+                                    <?php if (isset($filtro['categoria']) && in_array($id, $filtro['categoria'])): ?>
+                                        <input type='checkbox' name='categoria[]' value=<?= $id ?> id=<?= $descricao ?> checked>
+                                    <?php else: ?>
+                                        <input type='checkbox' name='categoria[]' value=<?= $id ?> id=<?= $descricao ?>>
+                                    <?php endif ?>
+                                    <?php if ($delimitador): ?>
+                                        <?= $descricao ?>
+                                    <?php else: ?>
+                                        <i class='fas fa-angle-down'></i>
+                                        <strong><?= $descricao ?></strong>
+                                    <?php endif ?>
+                                </label>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -56,45 +70,53 @@
             <?php endif ?>
         </div>
         <div class='col-sm-9'>
-            <p class='sort form-group'>
-                <strong>Ordernar por:</strong>
-                <?= $this->Paginator->sort('valor_venda', 
-                    $this->Form->button(
-                        '<i class="fas fa-dollar-sign"></i> ' . __('Maior preço'), [
-                            'class' => 'btn btn-primary btn-sm',
-                            'type' => 'button',
-                            'escape' => false
-                        ]
-                    ), ['direction' => 'desc', 'escape' => false, 'lock' => true]
-                ) ?>
-                <?= $this->Paginator->sort('valor_venda', 
-                    $this->Form->button(
-                        '<i class="fas fa-dollar-sign"></i> ' . __('Menor preço'), [
-                            'class' => 'btn btn-primary btn-sm',
-                            'type' => 'button',
-                            'escape' => false
-                        ]
-                    ), ['direction' => 'asc', 'escape' => false, 'lock' => true]
-                ) ?>
-                <?= $this->Paginator->sort('nome', 
-                    $this->Form->button(
-                        '<i class="fas fa-long-arrow-alt-up"></i> ' . __('A-Z'), [
-                            'class' => 'btn btn-primary btn-sm',
-                            'type' => 'button',
-                            'escape' => false
-                        ]
-                    ), ['direction' => 'desc', 'escape' => false, 'lock' => true]
-                ) ?>
-                <?= $this->Paginator->sort('nome', 
-                    $this->Form->button(
-                        '<i class="fas fa-long-arrow-alt-down"></i> ' . __('A-Z'), [
-                            'class' => 'btn btn-primary btn-sm',
-                            'type' => 'button',
-                            'escape' => false
-                        ]
-                    ), ['direction' => 'asc', 'escape' => false, 'lock' => true]
-                ) ?>
-            </p>
+            <ul class='list-inline'>
+                <li><strong>Ordernar por:</strong></li>
+                <li class='form-group'>
+                    <?= $this->Paginator->sort('valor_venda', 
+                        $this->Form->button(
+                            '<i class="fas fa-dollar-sign"></i> ' . __('Maior preço'), [
+                                'class' => 'btn btn-info btn-sm',
+                                'type' => 'button',
+                                'escape' => false
+                            ]
+                        ), ['direction' => 'desc', 'escape' => false, 'lock' => true]
+                    ) ?>
+                </li>
+                <li class='form-group'>
+                    <?= $this->Paginator->sort('valor_venda', 
+                        $this->Form->button(
+                            '<i class="fas fa-dollar-sign"></i> ' . __('Menor preço'), [
+                                'class' => 'btn btn-info btn-sm',
+                                'type' => 'button',
+                                'escape' => false
+                            ]
+                        ), ['direction' => 'asc', 'escape' => false, 'lock' => true]
+                    ) ?>
+                </li>
+                <li class='form-group'>
+                    <?= $this->Paginator->sort('nome', 
+                        $this->Form->button(
+                            '<i class="fas fa-long-arrow-alt-up"></i> ' . __('A-Z'), [
+                                'class' => 'btn btn-info btn-sm',
+                                'type' => 'button',
+                                'escape' => false
+                            ]
+                        ), ['direction' => 'desc', 'escape' => false, 'lock' => true]
+                    ) ?>
+                </li>
+                <li class='form-group'>
+                    <?= $this->Paginator->sort('nome', 
+                        $this->Form->button(
+                            '<i class="fas fa-long-arrow-alt-down"></i> ' . __('A-Z'), [
+                                'class' => 'btn btn-info btn-sm',
+                                'type' => 'button',
+                                'escape' => false
+                            ]
+                        ), ['direction' => 'asc', 'escape' => false, 'lock' => true]
+                    ) ?>
+                </li>
+            </ul>
             <div class='row'>
                 <?php if (sizeof($produto) > 0): ?>
                     <?php foreach ($produto as $produto): ?>

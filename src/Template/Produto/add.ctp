@@ -168,14 +168,14 @@
                 </div>
             </div>
             <div class='form-footer row'>
-                <div class='form-group col-sm-5'>
+                <div class='form-group col-sm-3 col-sm-offset-5'>
                     <?= $this->Html->link(
                         '<i class="fas fa-angle-double-left"></i> ' . __('Retornar'), 
                         ['action' => 'index', '_full' => true], 
                         ['class' => 'btn btn-primary btn-block', 'escape' => false]
                     ) ?>
                 </div>
-                <div class='form-group col-sm-7'>
+                <div class='form-group col-sm-4'>
                     <?= $this->Form->button(
                         __('Salvar') . ' <i class="fas fa-save"></i>', [
                             'class' => 'btn btn-success btn-block',
