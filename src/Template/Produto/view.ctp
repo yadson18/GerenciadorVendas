@@ -1,107 +1,75 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Produto $produto
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Produto'), ['action' => 'edit', $produto->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Produto'), ['action' => 'delete', $produto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Produto'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Produto'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Categoria'), ['controller' => 'Categoria', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Categorium'), ['controller' => 'Categoria', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Pedido'), ['controller' => 'Pedido', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedido', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="produto view large-9 medium-8 columns content">
-    <h3><?= h($produto->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Codigo Produto') ?></th>
-            <td><?= h($produto->codigo_produto) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($produto->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Caminho Imagem') ?></th>
-            <td><?= h($produto->caminho_imagem) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Categorium') ?></th>
-            <td><?= $produto->has('categorium') ? $this->Html->link($produto->categorium->id, ['controller' => 'Categoria', 'action' => 'view', $produto->categorium->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($produto->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Quantidade Estoque') ?></th>
-            <td><?= $this->Number->format($produto->quantidade_estoque) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Valor Compra') ?></th>
-            <td><?= $this->Number->format($produto->valor_compra) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Valor Venda') ?></th>
-            <td><?= $this->Number->format($produto->valor_venda) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Criado Por') ?></th>
-            <td><?= $this->Number->format($produto->criado_por) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Alterado Por') ?></th>
-            <td><?= $this->Number->format($produto->alterado_por) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Data Criacao') ?></th>
-            <td><?= h($produto->data_criacao) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Data Alteracao') ?></th>
-            <td><?= h($produto->data_alteracao) ?></td>
-        </tr>
-    </table>
-    <div class="row">
-        <h4><?= __('Descricao') ?></h4>
-        <?= $this->Text->autoParagraph(h($produto->descricao)); ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Pedido') ?></h4>
-        <?php if (!empty($produto->pedido)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Data Pedido') ?></th>
-                <th scope="col"><?= __('Valor Pedido') ?></th>
-                <th scope="col"><?= __('Forma Pagamento Id') ?></th>
-                <th scope="col"><?= __('Encomendado Por') ?></th>
-                <th scope="col"><?= __('Despachado Por') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($produto->pedido as $pedido): ?>
-            <tr>
-                <td><?= h($pedido->id) ?></td>
-                <td><?= h($pedido->data_pedido) ?></td>
-                <td><?= h($pedido->valor_pedido) ?></td>
-                <td><?= h($pedido->forma_pagamento_id) ?></td>
-                <td><?= h($pedido->encomendado_por) ?></td>
-                <td><?= h($pedido->despachado_por) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Pedido', 'action' => 'view', $pedido->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Pedido', 'action' => 'edit', $pedido->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Pedido', 'action' => 'delete', $pedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedido->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+<div id='produto-view'>
+    <div class='view container'>
+        <div class='view-header'>
+            <ul class='list-inline text-right'>
+                <li>
+                    <?= $this->Html->link(
+                        __('Excluir') . ' <i class="fas fa-trash-alt"></i>', 
+                        ['action' => 'delete', $produto->id, '_full' => true], 
+                        ['class' => 'btn btn-danger', 'escape' => false]
+                    ) ?>
+                </li>
+                <li>
+                    <?= $this->Html->link(
+                        __('Editar') . ' <i class="fas fa-pencil-alt"></i>', 
+                        ['action' => 'edit', $produto->id, '_full' => true], 
+                        ['class' => 'btn btn-primary', 'escape' => false]
+                    ) ?>
+                </li>
+            </ul>
+        </div>
+        <div class='view-body'>
+            <div class='row'>
+                <div class='view-image col-sm-4'>
+                    <?php if (is_file(WWW_ROOT . 'img' . DS . $produto->caminho_imagem)): ?>
+                        <?= $this->Html->image($produto->caminho_imagem, ['class' => 'img-responsive']) ?>
+                    <?php else: ?>
+                        <?= $this->Html->image('produtos/sem-imagem.gif', ['class' => 'img-responsive']) ?>
+                    <?php endif ?>
+                </div>
+                <div class='view-content col-sm-8'>
+                    <h3 class='view-content-header text-center'><?= h($produto->nome) ?></h3>
+                    <ul class='list-unstyled'>
+                        <li>
+                            <strong>Código do produto: </strong>
+                            <?= h($produto->codigo_produto) ?>
+                        </li>
+                        <li><?= h($produto->data_criacao) ?></li>
+                        <li><?= h($produto->data_alteracao) ?></li>
+                        <li><?= $this->Number->format($produto->quantidade_estoque) ?></li>
+                        <li><?= $produto->categoria_id ?></li>
+                        <li><?= $produto->alterado_por ?></li>
+                        <li><?= $produto->criado_por ?></li>
+                        <li>
+                            <ul class='list-inline text-center'>
+                                <li>
+                                    <p><?= __('Preço de compra') ?></p>
+                                    <p class='product-price'>
+                                        <strong>
+                                            <?= $this->Number->currency($produto->valor_compra) ?>
+                                        </strong>
+                                    </p>
+                                </li>
+                                <li class='hidden-xs'><i class='fas fa-arrow-right'></i></li>
+                                <li>
+                                    <p><?= __('Preço de venda') ?></p>
+                                    <p class='product-price'>
+                                        <strong>
+                                            <?= $this->Number->currency($produto->valor_venda) ?>
+                                        </strong>
+                                    </p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class='view-footer'>
+            <div class='description'>
+                <h3 class='text-center'><?= __('Descrição') ?></h3>
+                <?= $this->Text->autoParagraph(h($produto->descricao)); ?>
+            </div>
+        </div>
     </div>
 </div>

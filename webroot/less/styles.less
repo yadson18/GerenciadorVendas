@@ -56,10 +56,10 @@
     }        
 }
 #sistema-home {
-	.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
 	.margin-top(2em);
 
 	.card-statistic {
+		.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
 		.box-shadow(1px 1px 8px 0 #555);
 		.margin-bottom(15px); 
 
@@ -156,11 +156,12 @@
 				.margin(auto);
 			}
 		}
-		.product-content {
+		.product-info {
 			.product-name, .product-description,
 			.product-price, .product-quantity {
 				.overflow(hidden);
 				.text-overflow(ellipsis);
+				.margin-bottom(10px);
 			}
 			.product-name, .product-price, .product-quantity {
 				.font-weight(bold);
@@ -183,13 +184,8 @@
 			}
 			.product-quantity {
 				.height(20px);
-			}
 
-			.product-price, .product-quantity {
-				span {
-					.font-weight(bold);
-				}
-				span.low-quantity {
+				.low-quantity {
 					.color(#c00);
 				}
 			}
@@ -200,6 +196,65 @@
 
 		.filter-header {
 			.margin-bottom(25px);
+		}
+	}
+}
+
+
+
+/* Padronização do CSS */
+.view {
+	.view-body {
+		.border-bottom(solid 1px #eee); 
+		.padding(15px);
+		
+		.view-image {
+			.border(solid 1px #eee);
+			.margin-bottom(15px);
+		}
+		.view-content {
+			.view-content-header {
+				.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
+				.border-bottom(solid 1px #eee);
+				.padding-bottom(15px);
+				.font-weight(bold);
+				.margin-top(0);
+				.color(#555);
+			}
+		}
+	}
+}
+#produto-view .view {
+	.view-body {
+		.view-image .img-responsive {
+			.margin(auto);
+		}
+		.view-content {
+			ul li {
+				.font-size(1.3em);
+
+				ul li {
+					.font-size(1.1em);
+					.color(#444);
+
+					p {
+						.padding(0);
+						.margin(0);
+					}
+				}
+			}
+			.product-price {
+				.font-size(1.2em);
+				.color(#5a6bf7);
+			}
+		}
+	}
+	.view-footer .description {
+		h3 {
+			.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
+		}
+		p {
+			.color(#777);
 		}
 	}
 }

@@ -49,12 +49,12 @@
                                 }
                             ?>
                             <div class='input checkbox'>
-                                <label for=<?= $descricao ?>> 
+                                <label for=categoria-<?= $id ?>> 
                                     <?= $tabulacao ?>
                                     <?php if (isset($filtro['categoria']) && in_array($id, $filtro['categoria'])): ?>
-                                        <input type='checkbox' name='categoria[]' value=<?= $id ?> id=<?= $descricao ?> checked>
+                                        <input type='checkbox' name='categoria[]' value=<?= $id ?> id=categoria-<?= $id ?> checked>
                                     <?php else: ?>
-                                        <input type='checkbox' name='categoria[]' value=<?= $id ?> id=<?= $descricao ?>>
+                                        <input type='checkbox' name='categoria[]' value=<?= $id ?> id=categoria-<?= $id ?>>
                                     <?php endif ?>
                                     <?php if ($delimitador): ?>
                                         <?= $descricao ?>
@@ -70,7 +70,7 @@
             <?php endif ?>
         </div>
         <div class='col-sm-9'>
-            <ul class='list-inline'>
+            <ul class='list-inline sort'>
                 <li><strong>Ordernar por:</strong></li>
                 <li class='form-group'>
                     <?= $this->Paginator->sort('valor_venda', 
@@ -133,24 +133,26 @@
                                         ]) ?>
                                     <?php endif ?>
                                 </div>
-                                <div class='product-content text-center'>
-                                    <p class='product-name'>
-                                        <?= ucfirst(h($produto->nome)) ?>
-                                    </p>
-                                    <p class='product-description'>
-                                        <?= h($produto->descricao) ?>
-                                    </p>
-                                    <p class='product-price'>
-                                        <?= $this->Number->currency($produto->valor_venda) ?>
-                                    </p>
-                                    <p class='product-quantity'>
-                                        <?= __('Disponíveis:') ?> 
-                                        <span class=<?= ($produto->quantidade_estoque < 4) ? 'low-quantity' : '' ?>>
-                                            <?= $this->Number->format($produto->quantidade_estoque) ?>
-                                        </span>
-                                    </p>
+                                <div class='product-info'>
+                                    <ul class='text-center'>
+                                        <li class='product-name'>
+                                            <?= ucfirst(h($produto->nome)) ?>
+                                        </li>
+                                        <li class='product-description'>
+                                            <?= h($produto->descricao) ?>
+                                        </li>
+                                        <li class='product-price'>
+                                            <?= $this->Number->currency($produto->valor_venda) ?>
+                                        </li>
+                                        <li class='product-quantity'>
+                                            <?= __('Disponíveis:') ?> 
+                                            <span class=<?= ($produto->quantidade_estoque < 4) ? 'low-quantity' : '' ?>>
+                                                <?= $this->Number->format($produto->quantidade_estoque) ?>
+                                            </span>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div>
+                                <div class='product-actions'>
                                     <?= $this->Html->link(
                                         __('Detalhes') . ' <i class="fas fa-angle-double-right"></i>', 
                                         ['action' => 'view', $produto->id, '_full' => true], 
