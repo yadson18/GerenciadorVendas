@@ -33,6 +33,7 @@ class CategoriaTable extends Table
     {
         parent::initialize($config);
 
+        $this->setEntityClass('App\Model\Entity\Categoria');
         $this->setTable('categoria');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');

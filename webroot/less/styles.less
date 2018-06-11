@@ -211,6 +211,7 @@
 		.view-image {
 			.border(solid 1px #eee);
 			.margin-bottom(15px);
+			.padding(15px);
 		}
 		.view-content {
 			.view-content-header {
@@ -226,26 +227,31 @@
 }
 #produto-view .view {
 	.view-body {
-		.view-image .img-responsive {
-			.margin(auto);
+		.view-image img {
+			.width(300px);
+			.height(300px);
 		}
 		.view-content {
-			ul li {
-				.font-size(1.3em);
+			.font-size(1.1em);
 
-				ul li {
-					.font-size(1.1em);
-					.color(#444);
-
-					p {
-						.padding(0);
-						.margin(0);
+			.badge {
+				.font-size(0.9em);
+			}
+			.list-group {
+				p {
+					.padding(0);
+					.margin(0);
+				}
+				ul {
+					.margin-top(15px);
+					.font-size(1.3em);
+					
+					.product-price {
+						.margin-bottom(15px);
+						.font-size(1.2em);
+						.color(#5a6bf7);
 					}
 				}
-			}
-			.product-price {
-				.font-size(1.2em);
-				.color(#5a6bf7);
 			}
 		}
 	}

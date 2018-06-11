@@ -97,6 +97,11 @@ class UsuarioTable extends Table
         return $rules;
     }
 
+    public function findAutorLogin(Query $consulta)
+    {
+        return $consulta->select(['login']);
+    }
+
     public function senhaHash($senha)
     {
         if (strlen($senha) > 0) {

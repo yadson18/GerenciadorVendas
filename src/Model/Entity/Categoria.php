@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Categorium Entity
+ * Categoria Entity
  *
  * @property int $id
  * @property string $descricao
@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $data_alteracao
  * @property int $categoria_pai_id
  */
-class Categorium extends Entity
+class Categoria extends Entity
 {
 
     /**

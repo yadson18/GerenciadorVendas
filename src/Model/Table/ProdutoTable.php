@@ -41,6 +41,21 @@ class ProdutoTable extends Table
 
         $this->belongsTo('Categoria', [
             'foreignKey' => 'categoria_id',
+            'propertyName' => 'categoria',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('UsuarioCriacao', [
+            'propertyName' => 'criado_por',
+            'foreignKey' => 'criado_por',
+            'className' => 'Usuario',
+            'finder' => 'autorLogin',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('UsuarioAlteracao', [
+            'propertyName' => 'alterado_por',
+            'foreignKey' => 'alterado_por',
+            'className' => 'Usuario',
+            'finder' => 'autorLogin',
             'joinType' => 'INNER'
         ]);
         $this->belongsToMany('Pedido', [
@@ -149,6 +164,32 @@ class ProdutoTable extends Table
                 )
             )
         ]);
+    }
+
+    public function findUsuarioAutor(Query $consulta)
+    {
+        return $consulta->innerJoin(['Usuario_c' => 'usuario'], 
+            'Usuario_c.id = Produto.criado_por'
+        )
+        ->innerJoin(['Usuario_a' => 'usuario'], 
+            'Usuario_a.id = Produto.alterado_por'
+        )
+        ->select([
+            'id', 'codigo_produto', 'nome', 'descricao',
+            'quantidade_estoque', 'valor_compra', 'valor_venda',
+            'caminho_imagem', 'usuario_criacao' => 'Usuario_c.login',
+            'data_criacao', 'usuario_alteracao' => 'Usuario_a.login',
+            'data_alteracao', 'Categoria.descricao'
+        ]);
+
+        /*return $consulta->join([
+            'Usuario' => [
+                'type' => 'LEFT',
+                'table' => 'usuario',
+                'conditions' => ['Usuario.id' => 'Produto.alterado_por']
+            ]
+        ], 
+        ['Usuario.id' => 'integer']);*/
     }
 
     public function validarImagem(array $imagem)

@@ -54,16 +54,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.6.4",
+            "version": "3.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "614f906e001f5e98174d1b273119931859bd7f39"
+                "reference": "9d26dcaa80739d24674062604bb3796e72023580"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/614f906e001f5e98174d1b273119931859bd7f39",
-                "reference": "614f906e001f5e98174d1b273119931859bd7f39",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/9d26dcaa80739d24674062604bb3796e72023580",
+                "reference": "9d26dcaa80739d24674062604bb3796e72023580",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2018-05-21T00:47:41+00:00"
+            "time": "2018-06-10T01:39:25+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1303,16 +1303,16 @@
         },
         {
             "name": "cakephp/cakephp-codesniffer",
-            "version": "3.0.3",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp-codesniffer.git",
-                "reference": "d77ac81199f2f1e5a8d8ebf96a5d6d7cd4e0542b"
+                "reference": "7f467fee00fd016b62cf8c85a57750ab2a895e81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp-codesniffer/zipball/d77ac81199f2f1e5a8d8ebf96a5d6d7cd4e0542b",
-                "reference": "d77ac81199f2f1e5a8d8ebf96a5d6d7cd4e0542b",
+                "url": "https://api.github.com/repos/cakephp/cakephp-codesniffer/zipball/7f467fee00fd016b62cf8c85a57750ab2a895e81",
+                "reference": "7f467fee00fd016b62cf8c85a57750ab2a895e81",
                 "shasum": ""
             },
             "require": {
@@ -1344,7 +1344,7 @@
                 "codesniffer",
                 "framework"
             ],
-            "time": "2017-12-21T20:01:35+00:00"
+            "time": "2018-06-09T16:01:01+00:00"
         },
         {
             "name": "cakephp/debug_kit",
@@ -2014,16 +2014,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.5",
+            "version": "v0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106"
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/0951e91ac04ca28cf317f3997a0adfc319e80106",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4a2ce86f199d51b6e2524214dc06835e872f4fce",
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce",
                 "shasum": ""
             },
             "require": {
@@ -2082,7 +2082,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2018-06-02T16:39:22+00:00"
+            "time": "2018-06-10T17:57:20+00:00"
         },
         {
             "name": "seld/cli-prompt",

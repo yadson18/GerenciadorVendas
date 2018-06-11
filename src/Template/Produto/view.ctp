@@ -20,26 +20,46 @@
         </div>
         <div class='view-body'>
             <div class='row'>
-                <div class='view-image col-sm-4'>
+                <div class='view-image col-sm-4 text-center'>
                     <?php if (is_file(WWW_ROOT . 'img' . DS . $produto->caminho_imagem)): ?>
-                        <?= $this->Html->image($produto->caminho_imagem, ['class' => 'img-responsive']) ?>
+                        <?= $this->Html->image($produto->caminho_imagem, ['class' => 'img-']) ?>
                     <?php else: ?>
-                        <?= $this->Html->image('produtos/sem-imagem.gif', ['class' => 'img-responsive']) ?>
+                        <?= $this->Html->image('produtos/sem-imagem.gif', ['class' => 'img-']) ?>
                     <?php endif ?>
                 </div>
                 <div class='view-content col-sm-8'>
                     <h3 class='view-content-header text-center'><?= h($produto->nome) ?></h3>
-                    <ul class='list-unstyled'>
-                        <li>
-                            <strong>Código do produto: </strong>
-                            <?= h($produto->codigo_produto) ?>
+                    <ul class='list-group list-unstyled'>
+                        <li class='list-group-item'>
+                            <strong>Categoria</strong>
+                            <span class='badge'><?= h($produto->categoria->descricao) ?></span>
                         </li>
-                        <li><?= h($produto->data_criacao) ?></li>
-                        <li><?= h($produto->data_alteracao) ?></li>
-                        <li><?= $this->Number->format($produto->quantidade_estoque) ?></li>
-                        <li><?= $produto->categoria_id ?></li>
-                        <li><?= $produto->alterado_por ?></li>
-                        <li><?= $produto->criado_por ?></li>
+                        <li class='list-group-item'>
+                            <strong>Código do produto</strong>
+                            <span class='badge'><?= h($produto->codigo_produto) ?></span>
+                        </li>
+                        <li class='list-group-item'>
+                            <strong>Criado por</strong>
+                            <span class='badge'><?= h($produto->criado_por->login) ?></span>
+                        </li>
+                        <li class='list-group-item'>
+                            <strong>Data de criação</strong>
+                            <span class='badge'><?= h($produto->data_criacao) ?></span>
+                        </li>
+                        <li class='list-group-item'>
+                            <strong>Alterado por</strong>
+                            <span class='badge'><?= h($produto->alterado_por->login) ?></span>
+                        </li>
+                        <li class='list-group-item'>
+                            <strong>Data de alteração</strong>
+                            <span class='badge'><?= h($produto->data_alteracao) ?></span>
+                        </li>
+                        <li class='list-group-item'>
+                            <strong>Quantidade em estoque</strong>
+                            <span class='badge'>
+                                <?= $this->Number->format($produto->quantidade_estoque) ?>
+                            </span>
+                        </li>
                         <li>
                             <ul class='list-inline text-center'>
                                 <li>
