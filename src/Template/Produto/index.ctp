@@ -134,7 +134,7 @@
                                     <?php endif ?>
                                 </div>
                                 <div class='product-info'>
-                                    <ul class='text-center'>
+                                    <ul class='list-unstyled text-center'>
                                         <li class='product-name'>
                                             <?= ucfirst(h($produto->nome)) ?>
                                         </li>

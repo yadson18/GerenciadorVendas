@@ -52,7 +52,9 @@
                             <span class='icon-bar'></span>
                         </button>
                     <?php endif ?>
-                    <a class='navbar-brand' href='#'>GV</a>
+                    <a class='logo' href='#'>
+                        <?= $this->Html->image('logo.png') ?>
+                    </a>
                 </div>
                 <?php if ($this->template !== 'login'): ?>
                     <div class='collapse navbar-collapse' id='menu'>

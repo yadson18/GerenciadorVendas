@@ -205,19 +205,18 @@
 /* Padronização do CSS */
 .view {
 	.view-body {
-		.border-bottom(solid 1px #eee); 
-		.padding(15px);
-		
-		.view-image {
-			.border(solid 1px #eee);
-			.margin-bottom(15px);
+		.view-image, .view-content {
 			.padding(15px);
+		}
+		.view-image {
+			.box-shadow(1px 1px 5px 0 gray);
+			.margin-bottom(15px);
 		}
 		.view-content {
 			.view-content-header {
 				.font-family(Poppins, sans-serif, Helvetica, Arial;) !important;
-				.border-bottom(solid 1px #eee);
-				.padding-bottom(15px);
+				.border-bottom(solid 1px #ddd);
+				.padding-bottom(10px);
 				.font-weight(bold);
 				.margin-top(0);
 				.color(#555);
@@ -228,11 +227,11 @@
 #produto-view .view {
 	.view-body {
 		.view-image img {
-			.width(300px);
-			.height(300px);
+			.width(auto);
+			.height(auto);
 		}
 		.view-content {
-			.font-size(1.1em);
+			.background-color(rgb(248, 248, 248));
 
 			.badge {
 				.font-size(0.9em);
@@ -243,11 +242,10 @@
 					.margin(0);
 				}
 				ul {
-					.margin-top(15px);
+					.margin-top(25px);
 					.font-size(1.3em);
 					
 					.product-price {
-						.margin-bottom(15px);
 						.font-size(1.2em);
 						.color(#5a6bf7);
 					}
