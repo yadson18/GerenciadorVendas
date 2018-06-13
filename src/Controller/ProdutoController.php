@@ -90,7 +90,7 @@ class ProdutoController extends AppController
                     $produto->caminho_imagem = $imagem['destino'] . $imagem['nome'];
                 }
                 if (!$produto->errors() && $this->Produto->save($produto)) {
-                    if (isset($produto->caminho_imagem)) {
+                    if (isset($imagem['imagem_tmp'])) {
                         if ($this->Produto->uploadImagem($imagem)) {
                             $this->Flash->success(__('O produto (' . $produto->nome . ') foi salvo com sucesso.'));
                         }
@@ -135,21 +135,53 @@ class ProdutoController extends AppController
      */
     public function edit($id = null)
     {
-        $produto = $this->Produto->get($id, [
-            'contain' => ['Pedido']
-        ]);
+        $produto = $this->Produto->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $produto = $this->Produto->patchEntity($produto, $this->request->getData());
-            if ($this->Produto->save($produto)) {
-                $this->Flash->success(__('The produto has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            $imagem = $this->Produto->validarImagem($this->request->getData('imagem'));
+            if (!$imagem['erro']) {
+                $produto = $this->Produto->patchEntity($produto, $this->request->getData('produto'));
+                $produto->valor_compra = $this->Conversor->moneyToFloat($produto->valor_compra);
+                $produto->valor_venda = $this->Conversor->moneyToFloat($produto->valor_venda);
+                $produto->alterado_por = $this->Auth->user('id');
+                $produto->data_alteracao = date('Y-m-d H:i:s');
+                if (isset($imagem['destino']) && isset($imagem['nome'])) {
+                    $produto->caminho_imagem = $imagem['destino'] . $imagem['nome'];
+                }
+                if (!$produto->errors() && $this->Produto->save($produto)) {
+                    if (isset($imagem['imagem_tmp'])) {
+                        if ($this->Produto->uploadImagem($imagem)) {
+                            $this->Flash->success(__('O produto (' . $produto->nome . ') foi modificado com sucesso.'));
+                        }
+                        else {
+                            $this->Flash->warning(__('O produto (' . $produto->nome . ') foi modificado com sucesso, porém não foi possível modificar a imagem.'));
+                        }
+                    }
+                    else {
+                        $this->Flash->success(__('O produto (' . $produto->nome . ') foi modificado com sucesso.'));
+                    }
+                }
+                else {
+                    $erros = '';
+                    foreach ($produto->errors() as $regras) {
+                        foreach ($regras as $mensagem) {
+                            $erros .= '<li>' . $mensagem . '</li>';
+                        }
+                    }
+                    $formato = '%s<ul class="error-list">%s</ul>';
+                    $mensagem = '<strong>Não foi possível modificar o produto.</strong><br>';
+                    $this->Flash->error(sprintf($formato, $mensagem, $erros), ['escape' => false]);
+                }
             }
-            $this->Flash->error(__('The produto could not be saved. Please, try again.'));
+            else {
+                $this->Flash->error(__($imagem['mensagem']));
+            }
         }
-        $categoria = $this->Produto->Categoria->find('list', ['limit' => 200]);
-        $pedido = $this->Produto->Pedido->find('list', ['limit' => 200]);
-        $this->set(compact('produto', 'categoria', 'pedido'));
+        $categoria = $this->Produto->Categoria->find('treeList', [
+            'keyPath' => 'id',
+            'valuePath' => 'descricao',
+            'spacer' => '&nbsp;&nbsp;'
+        ]);
+        $this->set(compact('produto', 'categoria'));
     }
 
     /**

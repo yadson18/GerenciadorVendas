@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Produto $produto
+ */
+?>
 <div id='produto-index' class='container-fluid'>
     <div class='message-box'><?= $this->Flash->render() ?></div>
     <div class='page-header'>

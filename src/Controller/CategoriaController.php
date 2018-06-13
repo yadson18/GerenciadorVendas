@@ -58,7 +58,7 @@ class CategoriaController extends AppController
                 $this->Flash->error('Não foi possível salvar a categoria (' . $categoria->descricao . ').');
             }
         }
-        return $this->redirect(['controller' => 'produto', 'action' => 'add']);
+        $this->redirect($this->referer());
     }
 
     /**

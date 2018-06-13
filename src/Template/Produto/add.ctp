@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Produto $produto
+ */
+?>
 <div id='produto-add' class='container-fluid'>
     <div class='col-md-8 col-md-offset-2'>    
         <?= $this->Form->create($produto, ['type' => 'file']) ?>

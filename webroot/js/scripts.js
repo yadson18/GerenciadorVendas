@@ -56,12 +56,12 @@ $(document).ready(function() {
 		return $(location).attr('href').split('?').shift();
 	}
 
-	function buscaProduto(evento) {
+	function buscaProduto($evento) {
 		var url = urlAtual();
     	var $busca = $('.search input[name=busca]');
 
-    	if (evento.type === 'click' ||
-    		evento.type === 'keypress' && evento.charCode === 13
+    	if ($evento.type === 'click' ||
+    		$evento.type === 'keypress' && $evento.charCode === 13
     	) {
 	    	if ($busca.val().replace(/\s/g, '') !== '') {
 		    		$(location).attr('href', url + '?' + $busca.serialize());    	
@@ -70,6 +70,20 @@ $(document).ready(function() {
 	    		$('.message-box').alert('error', 'Por favor, digite sua busca.');
 	    	}
     	}
+	}
+
+	function visualizarImagem($input, $visualizador) {
+		if ($visualizador.length > 0) {
+			if ($input.files && $input.files[0]) {
+			    var $leitor = new FileReader();
+
+		        $leitor.onload = function ($evento) {
+					$visualizador.attr('src', $evento.target.result);
+		        }
+
+			    $leitor.readAsDataURL($input.files[0]);
+			}
+		}
 	}
 
 	$('.thousands').mask('0.000.000.000.00', { reverse: true });
@@ -104,6 +118,7 @@ $(document).ready(function() {
 	});
 
 	$('.file').on('change', function(){
+		visualizarImagem(this, $('.preview img'));
 		$('.file-name').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 	});
 

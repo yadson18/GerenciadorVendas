@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Produto $produto
+ */
+?>
 <div id='produto-view'>
     <div class='view container'>
         <div class='view-header text-right form-group'>
@@ -21,11 +27,6 @@
                         <?php else: ?>
                             <?= $this->Html->image('produtos/sem-imagem.gif') ?>
                         <?php endif ?>
-                        <div>
-                            <button class='browse btn btn-primary btn-block' type='button'>
-                                <i class='fas fa-camera'></i> Alterar imagem
-                            </button>
-                        </div>
                     </div>
                 </div>
                 <div class='col-sm-8'>
@@ -33,31 +34,31 @@
                         <h3 class='view-content-header'><?= h($produto->nome) ?></h3>
                         <ul class='list-group list-unstyled'>
                             <li class='list-group-item'>
-                                <strong>Categoria</strong>
+                                <strong><?= __('Categoria') ?></strong>
                                 <span class='badge'><?= h($produto->categoria->descricao) ?></span>
                             </li>
                             <li class='list-group-item'>
-                                <strong>Código do produto</strong>
+                                <strong><?= __('Código do produto') ?></strong>
                                 <span class='badge'><?= h($produto->codigo_produto) ?></span>
                             </li>
                             <li class='list-group-item'>
-                                <strong>Criado por</strong>
+                                <strong><?= __('Criado por') ?></strong>
                                 <span class='badge'><?= h($produto->criado_por->login) ?></span>
                             </li>
                             <li class='list-group-item'>
-                                <strong>Data de criação</strong>
+                                <strong><?= __('Data de criação') ?></strong>
                                 <span class='badge'><?= h($produto->data_criacao) ?></span>
                             </li>
                             <li class='list-group-item'>
-                                <strong>Alterado por</strong>
+                                <strong><?= __('Alterado por') ?></strong>
                                 <span class='badge'><?= h($produto->alterado_por->login) ?></span>
                             </li>
                             <li class='list-group-item'>
-                                <strong>Data de alteração</strong>
+                                <strong><?= __('Data de alteração') ?></strong>
                                 <span class='badge'><?= h($produto->data_alteracao) ?></span>
                             </li>
                             <li class='list-group-item'>
-                                <strong>Quantidade em estoque</strong>
+                                <strong><?= __('Quantidade em estoque') ?></strong>
                                 <span class='badge'>
                                     <?= $this->Number->format($produto->quantidade_estoque) ?>
                                 </span>

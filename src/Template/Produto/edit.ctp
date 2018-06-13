@@ -4,42 +4,252 @@
  * @var \App\Model\Entity\Produto $produto
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $produto->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $produto->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Produto'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Categoria'), ['controller' => 'Categoria', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Categorium'), ['controller' => 'Categoria', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Pedido'), ['controller' => 'Pedido', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedido', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="produto form large-9 medium-8 columns content">
-    <?= $this->Form->create($produto) ?>
-    <fieldset>
-        <legend><?= __('Edit Produto') ?></legend>
-        <?php
-            echo $this->Form->control('codigo_produto');
-            echo $this->Form->control('nome');
-            echo $this->Form->control('descricao');
-            echo $this->Form->control('quantidade_estoque');
-            echo $this->Form->control('valor_compra');
-            echo $this->Form->control('valor_venda');
-            echo $this->Form->control('caminho_imagem');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('data_criacao');
-            echo $this->Form->control('alterado_por');
-            echo $this->Form->control('data_alteracao');
-            echo $this->Form->control('categoria_id', ['options' => $categoria]);
-            echo $this->Form->control('pedido._ids', ['options' => $pedido]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div id='produto-edit' class='container-fluid'>
+    <div class='col-md-10 col-md-offset-1'>    
+        <?= $this->Form->create($produto, ['type' => 'file']) ?>
+            <div class='form-header text-center'>
+                <h2 class='page-header'><?= __('Editar Produto') ?></h2>
+            </div>
+            <div class='form-body row'>
+                <div class='message-box col-sm-12'><?= $this->Flash->render() ?></div>
+                <div class='form-group col-sm-4 text-center'>
+                    <div class='view-image'>
+                        <div class='form-group preview'>
+                            <?php if (is_file(WWW_ROOT . 'img' . DS . $produto->caminho_imagem)): ?>
+                                <?= $this->Html->image($produto->caminho_imagem) ?>
+                            <?php else: ?>
+                                <?= $this->Html->image('produtos/sem-imagem.gif') ?>
+                            <?php endif ?>
+                        </div>
+                        <div>
+                            <?= $this->Form->file('imagem', [
+                                    'class' => 'form-control hidden file',
+                                    'accept' => 'image/*'
+                                ]) 
+                            ?>
+                            <?= $this->Form->button(
+                                '<i class="fas fa-camera"></i> ' . __('Alterar imagem'), [
+                                    'class' => 'browse btn btn-primary btn-block',
+                                    'type' => 'button',
+                                    'escape' => false,
+                                    'label' => false
+                                ]
+                            ) ?>
+                        </div>
+                    </div>
+                </div>
+                <div class='form-group col-sm-4'>
+                    <label>
+                        <?= __('Categoria') ?><span class='required'> *</span>
+                    </label>
+                    <div class='input-group'>
+                        <?= $this->Form->control('produto[categoria_id]', [
+                                'empty' => ($categoria->count() > 0) ? false : '-- Selecione --',
+                                'value' => h($produto->categoria_id),
+                                'class' => 'form-control',
+                                'options' => $categoria,
+                                'required' => true,
+                                'escape' => false,
+                                'label' => false
+                            ]) 
+                        ?>
+                        <span class='input-group-btn'>
+                            <?= $this->Form->button('<i class="fas fa-plus"></i>', [
+                                'data-target' => '#categoria-add',
+                                'class' => 'btn btn-success',
+                                'data-toggle' => 'modal',
+                                'type' => 'button',
+                                'escape' => false,
+                            ]) ?>
+                        </span>
+                    </div>
+                </div>
+                <div class='form-group col-sm-4'>
+                    <label>
+                        <?= __('Código referência') ?><span class='required'> *</span>
+                    </label> 
+                    <?= $this->Form->control('produto[codigo_produto]', [
+                            'value' => h($produto->codigo_produto),
+                            'placeholder' => 'Ex: 0171825',
+                            'class' => 'form-control',
+                            'required' => true,
+                            'label' => false
+                        ]) 
+                    ?>
+                </div>
+                <div class='form-group col-sm-7'>
+                    <label>
+                        <?= __('Nome') ?><span class='required'> *</span>
+                    </label>
+                    <?= $this->Form->control('produto[nome]', [
+                            'placeholder' => 'Ex: Empire Intense (100ml)',
+                            'value' => h($produto->nome),
+                            'class' => 'form-control',
+                            'label' => false
+                        ]) 
+                    ?>
+                </div>
+                <div class='form-group col-sm-3'>
+                    <label>
+                        <?= __('Preço compra (R$)') ?><span class='required'> *</span>
+                    </label> 
+                    <?= $this->Form->control('produto[valor_compra]', [
+                            'value' => $this->Number->format($produto->valor_compra, [
+                                'precision' => 2,
+                                'places' => 2
+                            ]),
+                            'class' => 'form-control money',
+                            'placeholder' => 'Ex: 40,00',
+                            'id' => 'preco-compra',
+                            'label' => false,
+                            'type' => 'text'
+                        ]) 
+                    ?>
+                </div>
+                <div class='form-group col-sm-3'>
+                    <label><?= __('Lucro (%)') ?></label>
+                    <?= $this->Form->control('lucro', [
+                            'class' => 'form-control percent',
+                            'placeholder' => 'Ex: 50.00',
+                            'label' => false,
+                            'name' => false,
+                            'id' => 'lucro'
+                        ]) 
+                    ?>
+                </div>
+                <div class='form-group col-sm-3'>
+                    <label><?= __('Preço sugerido (R$)') ?></label>
+                    <?= $this->Form->control('preco_sugerido', [
+                            'class' => 'form-control money',
+                            'placeholder' => 'Ex: 60,00',
+                            'id' => 'preco-sugerido',
+                            'disabled' => true,
+                            'label' => false,
+                            'name' => false
+                        ]) 
+                    ?>
+                </div>
+                <div class='form-group col-sm-3'>
+                    <label>
+                        <?= __('Preço venda (R$)') ?><span class='required'> *</span>
+                    </label>
+                    <?= $this->Form->control('produto[valor_venda]', [
+                            'value' => $this->Number->format($produto->valor_venda, [
+                                'precision' => 2,
+                                'places' => 2
+                            ]),
+                            'class' => 'form-control money',
+                            'placeholder' => 'Ex: 60,00',
+                            'label' => false,
+                            'type' => 'text'
+                        ]) 
+                    ?>
+                </div>
+                <div class='form-group col-sm-2'>
+                    <label>
+                        <?= __('Estoque') ?><span class='required'> *</span>
+                    </label>
+                    <?= $this->Form->control('produto[quantidade_estoque]', [
+                            'value' => h($produto->quantidade_estoque),
+                            'class' => 'form-control',
+                            'placeholder' => 'Ex: 15',
+                            'label' => false
+                        ]) 
+                    ?>
+                </div>
+                <div class='form-group col-sm-12'>
+                    <label><?= __('Descrição do produto') ?></label>
+                    <?= $this->Form->textArea('produto[descricao]', [
+                            'placeholder' => 'Digite uma descrição...',
+                            'value' => h($produto->descricao),
+                            'class' => 'form-control',
+                            'maxlength' => 1100,
+                            'label' => false
+                        ]) 
+                    ?>
+                </div>
+            </div>
+            <div class='form-footer row'>
+                <div class='form-group col-sm-3 col-sm-offset-5'>
+                    <?= $this->Html->link(
+                        '<i class="fas fa-angle-double-left"></i> ' . __('Retornar'), 
+                        ['action' => 'index', '_full' => true], 
+                        ['class' => 'btn btn-primary btn-block', 'escape' => false]
+                    ) ?>
+                </div>
+                <div class='form-group col-sm-4'>
+                    <?= $this->Form->button(
+                        __('Salvar alterações') . ' <i class="fas fa-save"></i>', [
+                            'class' => 'btn btn-success btn-block',
+                            'escape' => false,
+                            'label' => false
+                        ]
+                    ) ?>
+                </div>
+            </div>
+        <?= $this->Form->end() ?>
+    </div>
+</div>
+<!-- Modal Adicionar Categoria -->
+<div id='categoria-add' class='modal fade' role='dialog'>
+    <div class='modal-dialog'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                <h4 class='modal-title text-center'><?= __('Nova Categoria') ?></h4>
+            </div>
+            <div class='modal-body'>
+                <?= $this->Form->create('', [
+                    'id' => 'form-categoria',
+                    'url' => [
+                        'controller' => 'categoria',
+                        'action' => 'add'
+                    ]
+                ]) ?>
+                    <div class='row'>
+                        <div class='form-group col-sm-5'>
+                            <?= $this->Form->control('categoria_pai_id', [
+                                    'empty' => '-- Sem categoria --',
+                                    'label' => 'Categoria (Pai)',
+                                    'class' => 'form-control',
+                                    'options' => $categoria,
+                                    'escape' => false
+                                ]) 
+                            ?>
+                        </div>
+                        <div class='form-group col-sm-7'>
+                            <label>
+                                <?= __('Descrição') ?><span class='required'> *</span>
+                            </label>
+                            <?= $this->Form->control('descricao', [
+                                    'placeholder' => 'Ex: Perfumaria',
+                                    'class' => 'form-control',
+                                    'required' => true,
+                                    'label' => false
+                                ]) 
+                            ?>
+                        </div>
+                    </div>
+                <?= $this->Form->end() ?>
+            </div>
+            <div class='modal-footer'>
+                <?= $this->Form->button(
+                    __('Fechar') . ' <i class="fas fa-times"></i>', [
+                        'class' => 'btn btn-danger',
+                        'data-dismiss' => 'modal',
+                        'escape' => false,
+                        'label' => false
+                    ]
+                ) ?>
+                <?= $this->Form->button(
+                    __('Salvar') . ' <i class="fas fa-save"></i>', [
+                        'class' => 'btn btn-success',
+                        'form' => 'form-categoria',
+                        'escape' => false,
+                        'label' => false
+                    ]
+                ) ?>
+            </div>
+        </div>
+    </div>
 </div>
