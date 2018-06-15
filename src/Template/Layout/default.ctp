@@ -16,22 +16,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Multi+</title>
+        
         <?= $this->Html->charset() ?>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Gerenciador Vendas</title>
-
         <?= $this->Html->meta('icon') ?>
-        <?= $this->Html->css(['bootstrap.min','fontawesome.min']) ?>
-        <?= $this->Html->script([
-            'jquery.min',
-            'bootstrap.min',
-            'mask-money.min',
-            'mask.min',
-            'scripts'
-        ]) ?>
         <?= $this->Html->meta([
-            'link' => '/less/styles.less',
-            'rel' => 'stylesheet/less',
+            'name' => 'viewport', 
+            'content' => 'width=device-width, initial-scale=1.0'
+        ]) ?>
+
+        <?= $this->Html->css(['bootstrap.min','fontawesome.min']) ?>
+        <?= $this->Html->script(['jquery.min', 'bootstrap.min']) ?>
+        <?= $this->Html->meta([
+            'link' => '/less/styles.less', 
+            'rel' => 'stylesheet/less', 
             'type' => 'text/css'
         ]); ?>
         <?= $this->Html->script('less.min.js') ?>
@@ -40,8 +38,8 @@
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
     </head>
-    <body>
-        <nav class='navbar navbar-default' id='main-menu'>
+    <body data-spy='scroll' data-target='.navbar' data-offset='50'>
+        <nav class='navbar' id='menu-principal'>
             <div class='container-fluid'>
                 <div class='navbar-header'>
                     <?php if ($this->template !== 'login'): ?>
@@ -51,66 +49,19 @@
                             <span class='icon-bar'></span>
                             <span class='icon-bar'></span>
                         </button>
-                    <?php endif ?>
-                    <a class='logo' href='#'>
-                        <?= $this->Html->image('logo.png') ?>
-                    </a>
+                        <a class='navbar-brand' href='#topo'>
+                            <?= $this->Html->image('logo.png', ['width' => 140]) ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
-                <?php if ($this->template !== 'login'): ?>
-                    <div class='collapse navbar-collapse' id='menu'>
-                        <ul class='nav navbar-nav'>
-                            <li>
-                                <a href='/sistema/home'>
-                                    <i class='fas fa-home'></i> <?= __('Início') ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='/cliente/index'>
-                                    <i class='fas fa-users'></i> <?= __('Cliente') ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='/produto/index'>
-                                    <i class='fas fa-dolly-flatbed'></i> <?= __('Produto') ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='/colaborador/index'>
-                                    <i class='fas fa-user-tie'></i> <?= __('Colaborador') ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='/pedido/index'>
-                                    <i class='fas fa-shopping-cart'></i> <?= __('Pedido') ?>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class='nav navbar-nav navbar-right'>
-                            <li class='dropdown'>
-                                <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
-                                    <i class='fas fa-user-circle fa-lg'></i>
-                                    <?= ucfirst($usuario['login']) ?> 
-                                    <span class='caret'></span>
-                                </a>
-                                <ul class='dropdown-menu'>
-                                    <li>
-                                        <a href='#'>
-                                            <i class='fas fa-key'></i> <?= __('Alterar Senha') ?>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='/Usuario/logout'>
-                                            <i class='fas fa-sign-out-alt'></i> <?= __('Sair') ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                <?php endif ?>
+                <div class='collapse navbar-collapse' id='menu'>
+                    <?php if ($this->template === 'display'): ?>
+                        <?= $this->element('Home/menu') ?>
+                    <?php endif ?>
+                </div>
             </div>
         </nav>
-        <div class='container-fluid'>
+        <div class='content'>
             <?= $this->fetch('content') ?>
         </div>
     </body>

@@ -16,6 +16,12 @@
     -o-animation-duration: @duration;
     animation-duration: @duration;
 }
+.background(@background){
+    -webkit-background: @background;
+    -moz-background: @background;
+    -o-background: @background;
+    background: @background;
+}
 .background-image(@url){
     -webkit-background-image: @url;
     -moz-background-image: @url;
@@ -27,6 +33,24 @@
     -moz-background-color: @color;
     -o-background-color: @color;
     background-color: @color;
+}
+.background-repeat(@repeat){
+    -webkit-background-repeat: @repeat;
+    -moz-background-repeat: @repeat;
+    -o-background-repeat: @repeat;
+    background-repeat: @repeat;
+}
+.background-attachment(@attachment){
+    -webkit-background-attachment: @attachment;
+    -moz-background-attachment: @attachment;
+    -o-background-attachment: @attachment;
+    background-attachment: @attachment;
+}
+.background-size(@size){
+    -webkit-background-size: @size;
+    -moz-background-size: @size;
+    -o-background-size: @size;
+    background-size: @size;
 }
 .border-bottom(@border){
     -webkit-border-bottom: @border;
@@ -255,6 +279,12 @@
     -moz-position: @position;
     -o-position: @position;
     position: @position;
+}
+.background-position-y(@position){
+    -webkit-background-position-y: @position;
+    -moz-background-position-y: @position;
+    -o-background-position-y: @position;
+    background-position-y: @position;
 }
 .pointer-events(@events){
     -webkit-pointer-events: @events;
