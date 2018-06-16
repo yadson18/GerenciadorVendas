@@ -1,5 +1,5 @@
 @import 'mixin.less';
-/*@import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins');*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins');
 
 * {
     .margin(0);
@@ -113,7 +113,7 @@ body {
 			.z-index(10000);
 
 			.icon-bar {
-				.background-color(black);
+				.background-color(white);
 				.height(4px);
     			.width(27px);
 			}
@@ -172,13 +172,67 @@ body {
 	.font-size(1.22em);
 	.margin-top(2em);
 	.color(white);
+
+	h1 {
+		.font-size(2.3em);
+	}
+
+	a {
+		.padding(15px 30px);
+	}
 }
 
 #conteudo {
-	.background-color(#d7cec7);
+	.background-color(white);
 	.position(absolute);
 	.width(100%);
 	.top(100%);
+
+	/*#premios {
+		
+	}*/
+
+	#premios > div > div {
+		.margin-bottom(3em);
+		.text-align(center);
+		.margin-top(3em);
+	}
+}
+
+footer {
+	.font-family(Montserrat, Poppins, sans-serif, Helvetica, Arial;);
+	.background-color(#444);
+	.color(white);
+	.padding(3em);
+
+	#social .icone {
+		.display(inline-block);
+
+		&:hover {
+			i {
+				.transform(rotateY(360deg););
+				.transition(1s);
+			}
+		}
+
+		a {
+			.text-decoration(none);
+			.color(white);
+		}
+
+		i {
+			.font-size(2.6em);
+		}
+
+		p {
+			.font-size(1.15em);
+		}
+	}
+
+	#copy p {
+		.padding(3em 1em 0 1em);
+		.font-weight(bold);
+	}
 }
 
 #login-conteudo {
@@ -199,8 +253,12 @@ body {
 		.border-radius(3px); 
 		
 		.titulo {
-			.margin-bottom(2em);
+			.margin-bottom(15px);
 			.font-weight(bold);
+		}
+
+		.formulario-conteudo {
+			.margin-bottom(2em);
 		}
 	}
 }

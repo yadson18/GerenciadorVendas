@@ -10,7 +10,7 @@
             <div class='titulo text-center'>
                 <h3>Login</h3>
             </div>
-            <div class='form-body'>
+            <div class='formulario-conteudo'>
                 <div class='message-box'>
                     <?= $this->Flash->render() ?>   
                     <?= $this->Flash->render('auth') ?>
@@ -37,7 +37,7 @@
                     <i class='fas fa-key icon'></i>
                 </div>
             </div>
-            <div class='form-footer'>
+            <div class='formulario-rodape'>
                 <div class='form-group'>
                     <?= $this->Form->button(
                         __('Entrar'). ' <i class="fas fa-sign-in-alt"></i>', 

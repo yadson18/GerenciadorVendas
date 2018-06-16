@@ -15,10 +15,10 @@
 ?>
 <ul class='nav navbar-nav navbar-right'>
 	<li>
-        <a href='#servicos'><?= __('PRODUTOS') ?></a>
+        <a href='#sobre'><?= __('SOBRE') ?></a>
     </li>
     <li>
-        <a href='#sobre'><?= __('SOBRE') ?></a>
+        <a href='#premios'><?= __('PRÊMIOS') ?></a>
     </li>
     <li>
         <a href='#contatos'><?= __('CONTATOS') ?></a>
