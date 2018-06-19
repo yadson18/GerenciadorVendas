@@ -14,8 +14,8 @@
  */
 ?>
 <div id='banner'>
-	<div class='col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1'>
-	    <h1><?= __('Bem-vindo, é um prazer conhece-lo.') ?></h1>
+	<div class='col-sm-8 col-sm-offset-2'>
+	    <h1><strong><?= __('Bem-vindo, é um prazer conhecê-lo.') ?></strong></h1>
 	    <p>
 	    	<a href='#sobre' class='btn btn-warning btn-lg'>
 	    		<?= __('Venha nos conhecer') ?>
@@ -23,149 +23,77 @@
 	    </p>
 	</div>
 </div>
-<div id='conteudo'>
-	<div class='container-fluid'>
-		<div id='sobre'>
-			<div class='col-sm-12'>
-				<div class='col-sm-6 col-sm-offset-3 text-center'>
-				    <h1>Quem Somos</h1>
-				    <p>
-				    	Fundada em 2018, a Multi+ é uma empresa familiar que atua no mercado de
-				    	Marketing Multinível e que tem como objetivo, proporcionar mudança de vida 
-				    	para pessoas que querem uma renda extra ou empreendedores que desejam ter 
-				    	seu próprio negócio. 
-
-				    </p>
-				</div>
-			</div>
-		</div>
-		<div id='premios' class='col-sm-12'>
-			<!-- <style type="text/css">
-				.premio {
-					border-right: solid 6px #ddd;
-				}
-				.premio .imagem {
-					position: relative;
-					top: 0;
-					padding: 7em;
-					z-index: 100;
-					top: -100%;
-					left: 53%;
-					list-style: none;
-				}
-				.premio .imagem div {
-					background-color: white;
-					display: inline-block;
-					bottom: 10px;
-					padding: 80px;
-					border-radius: 50%;
-					border: solid 6px #ddd;
-				}
-			</style>
-			<div class='col-sm-12'>
-				<div class='col-sm-12'>
-					<div class='premio col-sm-6'> 
-						<div class='imagem'>
-							<div>abc</div>
-						</div>
-					</div>
-				</div>
-				<div class='col-sm-12'>
-					<div class='premio col-sm-6'> 
-						<div class='imagem'>
-							<div>abc</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
-
-			<div class='col-sm-4'>
-				<div class='col-md-10 col-md-offset-1'>
-					<div class='titulo'>
-						<h3>Prêmio ABIHPEC, melhor criação perfumística 2015</h3>
-					</div>
-					<div class='imagem'> 
-						<?= $this->Html->image('home/empire.png', ['class' => 'img-responsive']) ?>
-					</div>
-					<div class='descricao'>
-						<p>
-							O perfume Empire, foi eleito a melhor criação perfumística de 2015, 
-					    	e tornou-se referência em qualidade.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class='col-sm-4'>
-				<div class='col-md-10 col-md-offset-1'>
-					<div class='titulo'>
-						<h3>Prêmio ABIHPEC, melhor criação perfumística 2015</h3>
-					</div>
-					<div class='imagem'> 
-						<?= $this->Html->image('home/grace.png', ['class' => 'img-responsive']) ?>
-					</div>
-					<div class='descricao'>
-						<p>
-							O perfume Empire, foi eleito a melhor criação perfumística de 2015, 
-					    	e tornou-se referência em qualidade.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class='col-sm-4'>
-				<div class='col-md-10 col-md-offset-1'>
-					<div class='titulo'>
-						<h3>Prêmio ABIHPEC, melhor criação perfumística 2015</h3>
-					</div>
-					<div class='imagem'> 
-						<?= $this->Html->image('home/feeling.png', ['class' => 'img-responsive']) ?>
-					</div>
-					<div class='descricao'>
-						<p>
-							O perfume Empire, foi eleito a melhor criação perfumística de 2015, 
-					    	e tornou-se referência em qualidade.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id='contatos'>
-		    <h1>Quem Somos</h1>
-		    <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+<div id='conteudo' class='container-fluid'>
+	<div id='sobre' class='col-sm-12'>
+		<div class='col-sm-6 col-sm-offset-3 text-center'>
+		    <h1><strong><?= __('Quem Somos') ?></strong></h1>
+		    <p>
+		    	<?= __('Fundada em 2018, a Multi+ é uma empresa familiar que atua no mercado de Marketing Multinível e que tem como objetivo, proporcionar mudança de vida para pessoas que querem uma renda extra ou empreendedores que desejam ter seu próprio negócio.') ?>
+		    </p>
 		</div>
 	</div>
-	<footer class='text-center'>
-		<div id='social' class='row'>
-			<div class='col-sm-3'>
-				<div class='icone'>
-					<a href='#' target='_blank'>
-						<i class='fab fa-facebook'></i>
-						<p>Facebook</p>
-					</a>
+	<div id='premios' class='col-sm-12'>
+		<h1 class='text-center'>
+			<strong><?= __('Prêmios da Hinode') ?></strong>
+		</h1>
+		<div class='esquerda col-xs-12'>
+			<div class='linha col-xs-6'>
+				<div class='imagem'>
+					<?= $this->Html->image('home/empire.png', ['class' => 'img-responsive']) ?>
 				</div>
 			</div>
-			<div class='col-sm-3'>
-				<div class='icone'>
-					<a href='#' target='_blank'>
-						<i class='fab fa-instagram'></i>
-						<p>Instagram</p>
-					</a>
-				</div>
-			</div>
-			<div class='col-sm-3'>
-				<div class='icone'>
-					<i class='fab fa-whatsapp'></i>
-					<p>+55 (81) 98888-8888</p>
-				</div>
-			</div>
-			<div class='col-sm-3'>
-				<div class='icone'>
-					<i class='far fa-envelope'></i>
-					<p>example@gmail.com</p>
+			<div class='descricao col-sm-6'>
+				<div class='col-sm-9 col-sm-offset-3'>
+					<h2><strong><?= __('EMPIRE') ?></strong></h2>
+					<h3><?= __('Prêmio ABIHPEC, melhor criação perfumística 2015') ?></h3>
+					<p>
+						<?= __('O perfume Empire, foi eleito a melhor criação perfumística de 2015, e tornou-se referência em qualidade.') ?>
+					</p>
 				</div>
 			</div>
 		</div>
-		<div id='copy'>
-			<p>Copyright <i class='far fa-copyright'></i> Multi+ 2018</p>
+		<div class='direita col-xs-12'>
+			<div class='descricao col-sm-6'>
+				<div class='col-sm-9'>
+					<h2><strong><?= __('GRACE MIDNIGHT') ?></strong></h2>
+					<h3><?= __('Melhor criação perfumística Latino-Americana feminina') ?></h3>
+					<p>
+						<?= __('Desta vez a') ?> 
+						<a href='https://hinode.com.br' target='_blank'>
+							<strong>Hinode</strong>
+						</a> 
+						<?= __('ganhou no Prêmio Atualidade Cosmética 2016 com o perfume Grace Midnight.') ?>
+					</p>
+				</div>
+			</div>
+			<div class='linha col-xs-6'>
+				<div class='imagem'>
+					<?= $this->Html->image('home/grace.png', ['class' => 'img-responsive']) ?>
+				</div>
+			</div>
 		</div>
-	</footer>
+		<div class='esquerda col-xs-12'>
+			<div class='linha ultimo col-xs-6'>
+				<div class='imagem'>
+					<?= $this->Html->image('home/feelin.png', ['class' => 'img-responsive']) ?>
+				</div>
+			</div>
+			<div class='descricao col-sm-6'>
+				<div class='col-sm-9 col-sm-offset-3'>
+					<h2><strong><?= __('FEELIN FOR HER') ?></strong></h2>
+					<h3><?= __('Prêmio ABRE, de melhor embalagem brasileira') ?></h3>
+					<p>
+						<?= __('Embalagem desenvolvida pela') ?>
+						<a href='http://www.wheatonbrasil.com.br/' target='_blank'>
+							<strong>Wheaton Brasil</strong>
+						</a>
+						<?= __('da fragrância Feelin leva categoria Ouro em embalagem e Bronze em design estrutural.') ?>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id='contatos' class='col-sm-12 text-center'>
+	    <h1><strong><?= __('Contatos') ?></strong></h1>
+	</div>
 </div>

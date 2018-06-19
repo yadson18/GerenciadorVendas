@@ -168,9 +168,11 @@ body {
 }
 
 #banner {
+	.position(relative);
+	.top(4em);
 	.text-align(center);
 	.font-size(1.22em);
-	.margin-top(2em);
+	.height(85vh);
 	.color(white);
 
 	h1 {
@@ -184,18 +186,68 @@ body {
 
 #conteudo {
 	.background-color(white);
-	.position(absolute);
-	.width(100%);
-	.top(100%);
+	.padding(3em);
 
-	/*#premios {
+	#sobre p,
+	#premios .descricao p {
+		.font-size(1.3em);
+		.color(#555);
+	}
+
+	#premios {
+		.padding(2em 15px 8em 15px);
+
+		h1 {
+			.margin-bottom(1em);
+		}
+
+		.direita,
+		.esquerda {
+			.linha:not(.ultimo) {
+				.height(450px);
+			}
+
+			.linha .imagem {
+				.background-color(white);
+				.border(solid 6px #ddd);
+				.position(absolute);
+				.border-radius(50%);
+				.padding(15px);
+				.z-index(1000);
+				.height(280px);
+				.width(280px);
+			}
+		}
 		
-	}*/
+		.esquerda {
+			.linha {
+				.border-right(solid 6px #ddd);
+				.left(3px);
 
-	#premios > div > div {
-		.margin-bottom(3em);
-		.text-align(center);
-		.margin-top(3em);
+				.imagem {
+					.right(-142px);
+				}
+			}
+
+			.descricao {
+				.text-align(left);
+			}
+		}
+
+		.direita {
+			.linha {
+				.border-left(solid 6px #ddd);
+				.right(3px);
+
+				.imagem {
+					.left(-142px);
+				}
+			}
+
+			.descricao {
+				.text-align(right);
+			}
+		}
 	}
 }
 

@@ -64,5 +64,8 @@
         <div class='content'>
             <?= $this->fetch('content') ?>
         </div>
+        <?php if ($this->template === 'display'): ?>
+            <?= $this->element('Home/rodape') ?>
+        <?php endif ?>
     </body>
 </html>
