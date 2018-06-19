@@ -15,15 +15,15 @@
 ?>
 <footer class='text-center'>
 	<div id='social' class='row'>
-		<div class='col-sm-3'>
+		<div class='col-md-3 col-sm-6'>
 			<div class='icone'>
-				<a href='#' target='_blank'>
+				<a href='https://www.facebook.com/Multi-627934127554189/' target='_blank'>
 					<i class='fab fa-facebook'></i>
 					<p>Facebook</p>
 				</a>
 			</div>
 		</div>
-		<div class='col-sm-3'>
+		<div class='col-md-3 col-sm-6'>
 			<div class='icone'>
 				<a href='#' target='_blank'>
 					<i class='fab fa-instagram'></i>
@@ -31,16 +31,16 @@
 				</a>
 			</div>
 		</div>
-		<div class='col-sm-3'>
+		<div class='col-md-3 col-sm-6'>
 			<div class='icone'>
 				<i class='fab fa-whatsapp'></i>
 				<p>+55 (81) 98888-8888</p>
 			</div>
 		</div>
-		<div class='col-sm-3'>
+		<div class='col-md-3 col-sm-6'>
 			<div class='icone'>
 				<i class='far fa-envelope'></i>
-				<p>example@gmail.com</p>
+				<p>multimaiscosmeticos@gmail.com</p>
 			</div>
 		</div>
 	</div>
