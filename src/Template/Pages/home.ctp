@@ -17,15 +17,15 @@
 	<div class='col-sm-8 col-sm-offset-2'>
 	    <h1><strong><?= __('Bem-vindo, é um prazer conhecê-lo.') ?></strong></h1>
 	    <p>
-	    	<a href='#sobre' class='btn btn-warning btn-lg'>
-	    		<?= __('Venha nos conhecer') ?>
-	    	</a>
+	    	<?= $this->Html->link(__('Venha nos conhecer'), '#sobre', [
+	    		'class' => 'btn btn-warning btn-lg'
+	    	]) ?>
 	    </p>
 	</div>
 </div>
 <div id='conteudo' class='container-fluid'>
 	<div id='sobre' class='col-sm-12'>
-		<div class='col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center'>
+		<div class='col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center'>
 		    <h1><strong><?= __('Quem Somos') ?></strong></h1>
 		    <p>
 		    	<?= __('Fundada em 2018, a Multi+ é uma empresa familiar que atua no mercado de Marketing Multinível e que tem como objetivo, proporcionar mudança de vida para pessoas que querem uma renda extra ou empreendedores que desejam ter seu próprio negócio.') ?>
@@ -64,9 +64,11 @@
 					<h3><?= __('Melhor criação perfumística Latino-Americana feminina') ?></h3>
 					<p>
 						<?= __('Desta vez a') ?> 
-						<a href='https://hinode.com.br' target='_blank'>
-							<strong>Hinode</strong>
-						</a> 
+						<?= $this->Html->link(
+							'<strong>' . __('Hinode') . '</strong>',
+							'https://hinode.com.br',
+							['target' => '_blank', 'escape' => false]
+						) ?>
 						<?= __('ganhou no Prêmio Atualidade Cosmética 2016 com o perfume Grace Midnight.') ?>
 					</p>
 				</div>
@@ -84,9 +86,11 @@
 					<h3><?= __('Prêmio ABRE, de melhor embalagem brasileira') ?></h3>
 					<p>
 						<?= __('Embalagem desenvolvida pela') ?>
-						<a href='http://www.wheatonbrasil.com.br/' target='_blank'>
-							<strong>Wheaton Brasil</strong>
-						</a>
+						<?= $this->Html->link(
+							'<strong>' . __('Wheaton Brasil') . '</strong>',
+							'http://www.wheatonbrasil.com.br/',
+							['target' => '_blank', 'escape' => false]
+						) ?>
 						<?= __('da fragrância Feelin leva categoria Ouro em embalagem e Bronze em design estrutural.') ?>
 					</p>
 				</div>

@@ -49,14 +49,30 @@
                             <span class='icon-bar'></span>
                             <span class='icon-bar'></span>
                         </button>
-                        <a class='navbar-brand' href='#topo'>
-                            <?= $this->Html->image('logo.png', ['width' => 140]) ?>
-                        </a>
+                        <?= $this->Html->link($this->Html->image('logo.png', ['width' => 140]), 
+                            '#topo', 
+                            ['class' => 'navbar-brand', 'escape' => false]
+                        ) ?>
                     <?php endif; ?>
                 </div>
                 <div class='collapse navbar-collapse' id='menu'>
                     <?php if ($this->template === 'display'): ?>
-                        <?= $this->element('Home/menu') ?>
+                        <?= $this->element('Pattern/menu', [
+                            'class' => 'nav navbar-nav navbar-right',
+                            'links' => [
+                                __('SOBRE') => ['url' => '#sobre'],
+                                __('PRÊMIOS') => ['url' => '#premios'],
+                                __('CONTATOS') => ['url' => '#contatos'],
+                                '<i class="fas fa-sign-in-alt"></i> ' . __('Entrar') => [
+                                    'url' => [
+                                        'controller' => 'usuario', 
+                                        'action' => 'login',
+                                        '_full' => true
+                                    ],
+                                    'options' => ['escape' => false]
+                                ]
+                            ]
+                        ]) ?>
                     <?php endif ?>
                 </div>
             </div>
@@ -65,7 +81,7 @@
             <?= $this->fetch('content') ?>
         </div>
         <?php if ($this->template === 'display'): ?>
-            <?= $this->element('Home/rodape') ?>
+            <?= $this->element('Pattern/rodape') ?>
         <?php endif ?>
     </body>
 </html>

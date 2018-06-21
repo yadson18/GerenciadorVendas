@@ -17,18 +17,20 @@
 	<div id='social' class='row'>
 		<div class='col-md-3 col-sm-6'>
 			<div class='icone'>
-				<a href='https://www.facebook.com/Multi-627934127554189/' target='_blank'>
-					<i class='fab fa-facebook'></i>
-					<p>Facebook</p>
-				</a>
+				<?= $this->Html->link(
+					'<i class="fab fa-facebook"></i> <p>Facebook</p>', 
+					'https://www.facebook.com/Multi-627934127554189/', 
+					['escape' => false, 'target' => '_blank']
+				) ?>
 			</div>
 		</div>
 		<div class='col-md-3 col-sm-6'>
 			<div class='icone'>
-				<a href='#' target='_blank'>
-					<i class='fab fa-instagram'></i>
-					<p>Instagram</p>
-				</a>
+				<?= $this->Html->link(
+					'<i class="fab fa-instagram"></i> <p>Instagram</p>', 
+					'https://www.instagram.com/multimais_/', 
+					['escape' => false, 'target' => '_blank']
+				) ?>
 			</div>
 		</div>
 		<div class='col-md-3 col-sm-6'>
