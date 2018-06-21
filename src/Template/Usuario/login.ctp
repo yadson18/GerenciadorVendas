@@ -1,3 +1,18 @@
+<?php
+/**
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP(tm) Project
+ * @since         0.10.0
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
+ */
+?>
 <div id='login-conteudo'>
     <div class='logo text-center'>
          <?= $this->Html->image('logo.png', ['width' => 200]) ?>
@@ -8,7 +23,7 @@
             'id' => 'formulario-login'
         ]) ?>
             <div class='titulo text-center'>
-                <h3>Login</h3>
+                <h3><?= __('Entrar') ?></h3>
             </div>
             <div class='formulario-conteudo'>
                 <div class='message-box'>
@@ -40,13 +55,13 @@
             <div class='formulario-rodape'>
                 <div class='form-group'>
                     <?= $this->Form->button(
-                        __('Entrar'). ' <i class="fas fa-sign-in-alt"></i>', 
+                        __('Entrar {0}', '<i class="fas fa-sign-in-alt"></i>'), 
                         ['class' => 'btn btn-warning btn-block', 'escape' => false]
                     ) ?>
                 </div>
                 <div class='form-group'>
                     <?= $this->Html->link(
-                        '<i class="fas fa-angle-double-left"></i> ' . __('Retornar'), 
+                        __('{0} Retornar', '<i class="fas fa-angle-double-left"></i>'), 
                         ['controller' => 'pages', 'action' => 'home', '_full' => true], 
                         ['class' => 'btn btn-danger btn-block', 'escape' => false]
                     ) ?>

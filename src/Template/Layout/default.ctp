@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 ?>
-<!DOCTYPE html>
+<?= $this->Html->docType() ?>
 <html>
     <head>
         <title>Multi+</title>
@@ -63,7 +63,7 @@
                                 __('SOBRE') => ['url' => '#sobre'],
                                 __('PRÊMIOS') => ['url' => '#premios'],
                                 __('CONTATOS') => ['url' => '#contatos'],
-                                '<i class="fas fa-sign-in-alt"></i> ' . __('Entrar') => [
+                                __('{0} ENTRAR', '<i class="fas fa-sign-in-alt"></i>') => [
                                     'url' => [
                                         'controller' => 'usuario', 
                                         'action' => 'login',

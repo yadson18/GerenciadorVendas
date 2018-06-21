@@ -19,13 +19,15 @@
     <ul class='<?= $class ?>'>
         <?php if (isset($links) && is_array($links)): ?>
             <?php foreach ($links as $title => $link): ?>
-                <li>
-                    <?php if (is_array($link) && array_key_exists('options', $link)): ?>
-                        <?= $this->Html->link($title, $link['url'], $link['options']) ?>
-                    <?php else: ?>
-                        <?= $this->Html->link($title, $link['url']) ?>
-                    <?php endif ?>
-                </li>
+                <?php if (is_string($title) && array_key_exists('url', $link)): ?>
+                    <li>
+                        <?php if (array_key_exists('options', $link)): ?>
+                            <?= $this->Html->link($title, $link['url'], $link['options']) ?>
+                        <?php else: ?>
+                            <?= $this->Html->link($title, $link['url']) ?>
+                        <?php endif ?>
+                    </li>
+                <?php endif ?>
             <?php endforeach ?>
         <?php endif ?>
     </ul>

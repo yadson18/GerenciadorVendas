@@ -44,7 +44,7 @@
 			</div>
 			<div class='descricao col-md-6 col-sm-9'>
 				<div class='col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3'>
-					<h2><strong><?= __('EMPIRE') ?></strong></h2>
+					<h2><strong>EMPIRE</strong></h2>
 					<h3><?= __('Prêmio ABIHPEC, melhor criação perfumística 2015') ?></h3>
 					<p>
 						<?= __('O perfume Empire, foi eleito a melhor criação perfumística de 2015, e tornou-se referência em qualidade.') ?>
@@ -60,16 +60,16 @@
 			</div>
 			<div class='descricao col-md-6 col-sm-9'>
 				<div class='col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3'>
-					<h2><strong><?= __('GRACE MIDNIGHT') ?></strong></h2>
+					<h2><strong>GRACE MIDNIGHT</strong></h2>
 					<h3><?= __('Melhor criação perfumística Latino-Americana feminina') ?></h3>
 					<p>
-						<?= __('Desta vez a') ?> 
-						<?= $this->Html->link(
-							'<strong>' . __('Hinode') . '</strong>',
-							'https://hinode.com.br',
-							['target' => '_blank', 'escape' => false]
-						) ?>
-						<?= __('ganhou no Prêmio Atualidade Cosmética 2016 com o perfume Grace Midnight.') ?>
+						<?= __('Desta vez a {0} ganhou no Prêmio Atualidade Cosmética 2016 com o perfume Grace Midnight.', 
+							$this->Html->link(
+								'<strong>Hinode</strong>',
+								'https://hinode.com.br',
+								['target' => '_blank', 'escape' => false]
+							)
+						) ?>  
 					</p>
 				</div>
 			</div>
@@ -82,16 +82,16 @@
 			</div>
 			<div class='descricao col-md-6 col-sm-9'>
 				<div class='col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3'>
-					<h2><strong><?= __('FEELIN FOR HER') ?></strong></h2>
+					<h2><strong>FEELIN FOR HER</strong></h2>
 					<h3><?= __('Prêmio ABRE, de melhor embalagem brasileira') ?></h3>
 					<p>
-						<?= __('Embalagem desenvolvida pela') ?>
-						<?= $this->Html->link(
-							'<strong>' . __('Wheaton Brasil') . '</strong>',
-							'http://www.wheatonbrasil.com.br/',
-							['target' => '_blank', 'escape' => false]
+						<?= __('Embalagem desenvolvida pela {0} da fragrância Feelin leva categoria Ouro em embalagem e Bronze em design estrutural.', 
+							$this->Html->link(
+								'<strong>Wheaton Brasil</strong>',
+								'http://www.wheatonbrasil.com.br/',
+								['target' => '_blank', 'escape' => false]
+							)
 						) ?>
-						<?= __('da fragrância Feelin leva categoria Ouro em embalagem e Bronze em design estrutural.') ?>
 					</p>
 				</div>
 			</div>
